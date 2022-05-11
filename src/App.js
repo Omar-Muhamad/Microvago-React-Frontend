@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchToken } from './redux/Auth/auth'
+import { fetchToken } from './redux/Auth/auth';
 
 import './App.css';
 
@@ -14,6 +14,6 @@ const App = () => {
   return (
     'Hi'
   );
-}
+};
 
 export default App;
