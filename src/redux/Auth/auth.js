@@ -20,7 +20,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchToken.fulfilled, (state, action) => {
-      state.token = action.payload.token
+      localStorage.setItem('token', action.payload.token)
     })
   },
 });

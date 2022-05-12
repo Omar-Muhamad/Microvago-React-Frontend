@@ -10,3 +10,11 @@ export const login = async () => axios({
     password: 'admin'
   }
 });
+
+export const getHotels = async () => axios({
+  method: 'get',
+  url: `${API_URL}/hotels`,
+  headers: {
+    'Authorization': `Bearer ${localStorage.getItem('token')}`
+  }
+});
