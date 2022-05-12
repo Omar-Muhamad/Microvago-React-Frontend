@@ -1,13 +1,20 @@
 import { useNavigate, NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { fetchToken } from '../../redux/Auth/auth';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { isAuthorized } = useSelector((state) => state.auth);
 
   const authenticate = (e) => {
     e.preventDefault();
+    const UserData = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    dispatch(fetchToken(UserData));
   };
 
   useEffect(() => {

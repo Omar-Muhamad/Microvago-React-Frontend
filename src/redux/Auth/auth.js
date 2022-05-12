@@ -7,8 +7,8 @@ const initialState = {
 
 export const fetchToken = createAsyncThunk(
   'auth/login',
-  async () => {
-    const response = await apiHelper.login();
+  async (payload) => {
+    const response = await apiHelper.login(payload);
     return response.data;
   },
 );

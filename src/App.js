@@ -5,6 +5,7 @@ import { fetchHotels } from './redux/Hotel/hotel';
 
 import './App.css';
 import Header from './components/Header/Header';
+import Login from './components/Login/Login';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const App = () => {
   return (
     <>
       <Header />
+      <Login />
       {/* <Login />
       <SignUp /> */}
     </>
