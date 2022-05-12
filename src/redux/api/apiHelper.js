@@ -18,3 +18,20 @@ export const getHotels = async () => axios({
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
 });
+
+export const postHotels = async (hotel) => axios({
+  method: 'post',
+  url: `${API_URL}/hotels`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+  data: hotel,
+});
+
+export const getRooms = async () => axios({
+  method: 'get',
+  url: `${API_URL}/rooms/index`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+});
