@@ -4,6 +4,7 @@ import { fetchToken } from './redux/Auth/auth';
 import { fetchHotels } from './redux/Hotel/hotel';
 
 import './App.css';
+import Header from './components/Header/Header';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ const App = () => {
   }, [dispatch, fetchToken]);
 
   return (
-    'Hi'
+    <>
+      <Header />
+    </>
   );
 };
 
