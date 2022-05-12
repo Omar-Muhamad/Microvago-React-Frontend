@@ -4,7 +4,7 @@ import { fetchToken } from './redux/Auth/auth';
 import { fetchHotels } from './redux/Hotel/hotel';
 
 import './App.css';
-import Navbar from './components/navbar/Navbar';
+import Header from './components/Header/Header';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
     </>
   );
 };
