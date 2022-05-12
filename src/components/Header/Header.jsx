@@ -12,7 +12,7 @@ const Header = () => (
             <NavLink to="/">Hotels</NavLink>
           </li>
           <li className="navLink hover:text-black">
-            <NavLink to="/addReservation">Add a resrvation</NavLink>
+            <NavLink to="/addReservation">Add a reservation</NavLink>
           </li>
           <li className="navLink hover:text-black">
             <NavLink to="/reservaions">My reservations</NavLink>
@@ -21,7 +21,7 @@ const Header = () => (
             <NavLink to="/addHotel">Add a Hotel</NavLink>
           </li>
           <li className="navLink hover:text-black">
-            <NavLink to="/delHotel">Delete a hotel</NavLink>
+            <NavLink to="/delHotel">Delete a Hotel</NavLink>
           </li>
         </ul>
       </nav>
