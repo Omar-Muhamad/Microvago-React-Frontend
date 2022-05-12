@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as apiHelper from '../api/apiHelper'
+import * as apiHelper from '../api/apiHelper';
 
 const initialState = {
-  token: null
-}
+  token: null,
+};
 
 export const fetchToken = createAsyncThunk(
   'auth/login',
   async () => {
-    const response = await apiHelper.login()
-    return response.data
-  }
-)
+    const response = await apiHelper.login();
+    return response.data;
+  },
+);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -20,11 +20,11 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchToken.fulfilled, (state, action) => {
-      localStorage.setItem('token', action.payload.token)
-    })
+      localStorage.setItem('token', action.payload.token);
+    });
   },
 });
 
-export const { } = authSlice.actions;
+// export const { } = authSlice.actions;
 
-export default authSlice.reducer
+export default authSlice.reducer;

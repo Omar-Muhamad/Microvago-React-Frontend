@@ -1,17 +1,18 @@
+/* eslint-disable no-param-reassign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import * as apiHelper from '../api/apiHelper'
+import * as apiHelper from '../api/apiHelper';
 
 const initialState = {
-  hotels: []
-}
+  hotels: [],
+};
 
 export const fetchHotels = createAsyncThunk(
   'hotels',
   async () => {
-    const response = await apiHelper.getHotels()
-    return response.data
-  }
-)
+    const response = await apiHelper.getHotels();
+    return response.data;
+  },
+);
 
 const hotelSlice = createSlice({
   name: 'hotel',
@@ -20,11 +21,11 @@ const hotelSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchHotels.fulfilled, (state, action) => {
-      state.hotels = action.payload
-    })
+      state.hotels = action.payload;
+    });
   },
 });
 
-export const { } = hotelSlice.actions;
+// export const {  } = hotelSlice.actions;
 
-export default hotelSlice.reducer
+export default hotelSlice.reducer;
