@@ -6,17 +6,21 @@ import './App.css';
 import Header from './components/Header/Header';
 import Hotel from './components/Hotel/Hotel';
 import Splash from './components/Splash/Splash';
+
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import history from './utils/history';
+
 
 const App = () => {
   // const router = useHistory();
   const dispatch = useDispatch();
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+  
   useEffect(() => {
     dispatch(checkAuth());
   }, []);
+
 
   return (
     <>
@@ -37,6 +41,7 @@ const App = () => {
             <Route path="/" element={<Splash />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="*" element={<Splash />} />
           </>
         )}
       </Routes>

@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../redux/Auth/auth';
 
 const SignUp = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const authenticate = (e) => {
     e.preventDefault();
@@ -15,6 +17,7 @@ const SignUp = () => {
       password: e.target.password.value,
     };
     dispatch(signUp(UserData));
+    navigate('/login');
   };
 
   return (

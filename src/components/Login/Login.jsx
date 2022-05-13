@@ -1,9 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/Auth/auth';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const authenticate = (e) => {
     e.preventDefault();
@@ -11,7 +12,9 @@ const Login = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     };
+
     dispatch(login(UserData));
+    navigate('/hotels');
   };
 
   return (
