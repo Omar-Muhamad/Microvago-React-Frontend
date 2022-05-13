@@ -12,7 +12,6 @@ const Login = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    console.log('USERDATA IS ', UserData);
     dispatch(fetchToken(UserData));
     navigate('/hotels');
   };
