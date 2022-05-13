@@ -1,32 +1,22 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { signUp } from '../../redux/Auth/auth';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { signUp } from '../../redux/Auth/auth';
 
 const SignUp = () => {
-  const navigate = useNavigate();
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  // const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/users');
-    }
-  }, [isAuthenticated]);
+  const dispatch = useDispatch();
 
   const authenticate = (e) => {
     e.preventDefault();
-    const form = document.getElementById('signup-form');
-    const formData = new FormData(form);
-
-    console.log('forma date is ', formData);
-    // dispatch(signUp({ form: e.target }));
+    const UserData = {
+      name: e.target.name.value,
+      admin: false,
+      profile_picture: '',
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    console.log('userData is ', UserData);
+    dispatch(signUp(UserData));
   };
-
-  // const handleSumit = (e) => {
-  //   console.log('handle sumit e is ', e.target.value);
-  // };
 
   return (
     <div className="flex items-center justify-center h-screen box-border">
