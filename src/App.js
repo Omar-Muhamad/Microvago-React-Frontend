@@ -1,13 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from './redux/Auth/auth';
 import { fetchHotels } from './redux/Hotel/hotel';
-
 import './App.css';
 import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
 import Hotel from './components/Hotel/Hotel';
 import Splash from './components/Splash/Splash';
+
 
 const App = () => {
   const dispatch = useDispatch();
