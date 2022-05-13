@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 const Splash = () => (
-  <div className="lg:splashBG h-screen w-full flex flex-col  items-center justify-center bg-[#6D22FB]">
+  <div className="splashBG h-screen w-full flex flex-col  items-center justify-center bg-[#6D22FB]">
     <div className="grow-[4] w-full flex items-center justify-center">
       <h1 className="font-['Comfortaa'] text-white text-5xl font-bold">
         Microvago
