@@ -14,7 +14,6 @@ const SignUp = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    console.log('userData is ', UserData);
     dispatch(signUp(UserData));
   };
 
