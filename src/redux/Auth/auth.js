@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as apiHelper from '../api/apiHelper';
 
 const initialState = {
-  token: null,
+  isAuthorized: false,
 };
 
 export const fetchToken = createAsyncThunk(
@@ -21,6 +21,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchToken.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
+      state.isAuthorized = true; // eslint-disable-line 
     });
   },
 });
