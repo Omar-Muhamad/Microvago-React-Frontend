@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchHotels } from '../../redux/Hotel/hotel';
 
 const Hotel = () => {
+  const dispatch = useDispatch();
   const hotels = useSelector((state) => state.hotels.hotels);
-
-  // const handleClick = () => { localStorage.clear(); };
-
+  useEffect(() => {
+    dispatch(fetchHotels());
+  }, []);
   return (
     <>
       {/* <button type="button" onClick={handleClick}>Logout</button> */}
@@ -13,7 +16,11 @@ const Hotel = () => {
         {hotels.map((hotel) => (
           <li key={hotel.id} className="hotel">
             <div className="imageContainer w-[300px] h-[170px]">
-              <img className="w-full h-full" src={hotel.image} alt={hotel.name} />
+              <img
+                className="w-full h-full"
+                src={hotel.image}
+                alt={hotel.name}
+              />
             </div>
             <h2 className="hotelName">{hotel.name}</h2>
             <p>{`Location: ${hotel.location}`}</p>
