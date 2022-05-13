@@ -1,3 +1,4 @@
+import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +8,9 @@ import './App.css';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import Hotel from './components/Hotel/Hotel';
+import Splash from './components/Splash/Splash';
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,15 +26,15 @@ const App = () => {
       <>
         <Header />
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/sign_up" element={<SignUp />} />
+          <Route path="/" element={<Hotel />} />
+          <Route path="/splash" element={<Splash />} />
         </Routes>
       </>
     );
   }
   return (
     <Routes>
-      <Route path="/" element={<h1>SPLASH</h1>} />
+      <Route path="/" element={<Splash />} />
     </Routes>
   );
 };
