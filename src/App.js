@@ -11,16 +11,14 @@ import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import history from './utils/history';
 
-
 const App = () => {
   // const router = useHistory();
   const dispatch = useDispatch();
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
-  
+
   useEffect(() => {
     dispatch(checkAuth());
   }, []);
-
 
   return (
     <>
