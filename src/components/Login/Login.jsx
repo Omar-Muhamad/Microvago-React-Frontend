@@ -1,9 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { fetchToken } from '../../redux/Auth/auth';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const authenticate = (e) => {
     e.preventDefault();
@@ -13,6 +14,7 @@ const Login = () => {
     };
     console.log('USERDATA IS ', UserData);
     dispatch(fetchToken(UserData));
+    navigate('/hotels');
   };
 
   return (
@@ -23,7 +25,7 @@ const Login = () => {
           <input className="my-4 py-2 border-2" type="email" name="email" placeholder="Email" defaultValue="" />
           <input className="my-4 py-2 border-2" type="password" name="password" placeholder="Password" defaultValue="" />
           <button className=" flex py-2 w-1/6 bg-teal-200 outline-cyan-500" type="submit">LOG IN</button>
-          <NavLink className="text-center " to="/sign_up">SIGN UP</NavLink>
+          <NavLink className="text-center " to="/signup">SIGN UP</NavLink>
         </form>
       </div>
     </div>

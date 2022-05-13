@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchToken } from './redux/Auth/auth';
 import { fetchHotels } from './redux/Hotel/hotel';
@@ -11,10 +10,9 @@ import SignUp from './components/SignUp/SignUp';
 import Hotel from './components/Hotel/Hotel';
 import Splash from './components/Splash/Splash';
 
-
 const App = () => {
   const dispatch = useDispatch();
-  const { isAuthorized } = useSelector((state) => state.auth.isAuthorized);
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
   useEffect(() => {
     dispatch(fetchToken());
@@ -26,16 +24,21 @@ const App = () => {
       <>
         <Header />
         <Routes>
-          <Route path="/" element={<Hotel />} />
-          <Route path="/splash" element={<Splash />} />
+          <Route path="/" element={<Splash />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Splash />} />
         </Routes>
       </>
     );
   }
   return (
-    <Routes>
-      <Route path="/" element={<Splash />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/hotels" element={<Hotel />} />
+      </Routes>
+    </>
   );
 };
 
