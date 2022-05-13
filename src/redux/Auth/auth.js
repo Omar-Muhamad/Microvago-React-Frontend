@@ -4,13 +4,23 @@ import * as apiHelper from '../api/apiHelper';
 
 const initialState = {
   token: null,
+  isAuthorized: false,
 };
 
 export const fetchToken = createAsyncThunk(
   'auth/login',
   async (payload) => {
-    const response = await apiHelper.login(payload);
-    return response.data;
+    try {
+      console.log('ENTERING TRY', payload);
+      const response = await apiHelper.login(payload);
+      console.log('RESPONSE FROM API', response);
+      return response.data;
+    } catch (error) {
+      // return rejectWithValue({ ...error.response.data });
+      return error.response.data;
+    }
+    /* const response = await apiHelper.login(payload);
+    return response.data; */
   },
 );
 
@@ -64,10 +74,19 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    /* redirect: (state) => {
+      state.token = localStorage.getItem('token');
+      dispatch
+    } */
   },
   extraReducers: (builder) => {
     builder.addCase(fetchToken.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        isAuthorized: true,
+        error: {},
+      };
     });
   },
 });

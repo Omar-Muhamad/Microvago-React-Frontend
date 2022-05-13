@@ -1,12 +1,9 @@
-import { useNavigate, NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { fetchToken } from '../../redux/Auth/auth';
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isAuthorized } = useSelector((state) => state.auth);
 
   const authenticate = (e) => {
     e.preventDefault();
@@ -14,14 +11,9 @@ const Login = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     };
+    console.log('USERDATA IS ', UserData);
     dispatch(fetchToken(UserData));
   };
-
-  useEffect(() => {
-    if (isAuthorized) {
-      navigate('/', { replace: true });
-    }
-  }, [isAuthorized]);
 
   return (
     <div className="flex items-center justify-center h-screen box-border">
