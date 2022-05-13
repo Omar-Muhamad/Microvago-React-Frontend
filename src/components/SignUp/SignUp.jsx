@@ -1,22 +1,32 @@
 import React, { useEffect } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { signUp } from '../../redux/Auth/auth';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/', { replace: true });
+      navigate('/users');
     }
   }, [isAuthenticated]);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/', { replace: true });
-    }
-  }, [isAuthenticated]);
+  const authenticate = (e) => {
+    e.preventDefault();
+    const form = document.getElementById('signup-form');
+    const formData = new FormData(form);
+
+    console.log('forma date is ', formData);
+    // dispatch(signUp({ form: e.target }));
+  };
+
+  // const handleSumit = (e) => {
+  //   console.log('handle sumit e is ', e.target.value);
+  // };
 
   return (
     <div className="flex items-center justify-center h-screen box-border">
@@ -24,30 +34,28 @@ const SignUp = () => {
         <div className="text-center pt-5">CREATE AN ACCOUNT</div>
         <form
           className="p-5 flex flex-col items-center justify-center w-full"
-          // onSubmit={(event) => authenticate(event)}
+          onSubmit={(event) => authenticate(event)}
+          id="signup-form"
         >
           <input
             className="my-4 py-2 border-2"
             type="text"
-            name="username"
-            placeholder="User name"
-            defaultValue=""
+            name="name"
+            placeholder="Name"
           />
           <input
             className="my-4 py-2 border-2"
             type="email"
             name="email"
             placeholder="Email"
-            defaultValue=""
           />
           <input
             className="my-4 py-2 border-2"
             type="password"
             name="password"
             placeholder="Password"
-            defaultValue=""
           />
-          <span>
+          <span className="text-xs">
             By clicking
             {' '}
             <b>Register</b>
@@ -59,7 +67,10 @@ const SignUp = () => {
             {' '}
             to stop.
           </span>
-          <NavLink className=" flex py-2 w-1/6 bg-teal-200 outline-cyan-500 mt-4 text-center" type="submit" to="/sign_up">SIGN UP</NavLink>
+          <button type="submit">
+            SIGN UP
+          </button>
+
         </form>
       </div>
     </div>

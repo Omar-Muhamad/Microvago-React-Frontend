@@ -12,6 +12,18 @@ export const login = async (UserData) => axios({
     password: UserData.password,
   },
 });
+
+export const signUp = async (UserData) => axios({
+  method: 'post',
+  url: `${API_URL}/users`,
+  data: {
+    name: UserData.name,
+    admin: UserData.admin,
+    profile_picture: UserData.profile_picture,
+    email: UserData.email,
+    password: UserData.password,
+  },
+});
 /*
 export const login = async () => axios({
   method: 'post',
