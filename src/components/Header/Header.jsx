@@ -11,8 +11,8 @@ const Header = () => {
   };
   return (
     <header className="header py-4 px-24 shadow-xl flex items-center justify-between">
-      <NavLink to="/">
-        <h1 className="text-2xl font-bold">Microvago</h1>
+      <NavLink to="/" className="text-2xl font-bold">
+        Microvago
       </NavLink>
       <nav className="nav">
         <ul className="navLinks flex gap-12 text-[gray] text-xl font-medium">

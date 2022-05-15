@@ -18,36 +18,42 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen box-border">
-      <div className="border-4 rounded-lg border-indigo-500/75 h-2/5 w-5/12">
-        <div className="text-center pt-5">SIGN IN</div>
+    <div className="splashBG bg-[#6D22FB] h-screen w-full flex items-center justify-center text-white text-center">
+      <div className="w-[90%] lg:w-[40%] px-8 lg:px-14 py-12 lg:pt-20 rounded-2xl bg-black/[0.5] backdrop-blur-[3px]">
+        <h1 className="font-['Comfortaa'] text-white text-3xl font-bold">
+          LOGIN
+        </h1>
         <form
-          className="p-5 flex flex-col items-center justify-center w-full"
+          className="flex flex-col items-center justify-center gap-6 w-full text-lg w-full"
           onSubmit={(event) => authenticate(event)}
         >
           <input
-            className="my-4 py-2 border-2"
+            className="w-full p-3 mt-6 bg-transparent border-2 rounded-full font-medium text-center"
             type="email"
             name="email"
             placeholder="Email"
-            defaultValue=""
           />
           <input
-            className="my-4 py-2 border-2"
+            className="w-full p-3 bg-transparent border-2 rounded-full font-medium text-center"
             type="password"
             name="password"
             placeholder="Password"
-            defaultValue=""
           />
           <button
-            className=" flex py-2 w-1/6 bg-teal-200 outline-cyan-500"
+            className="w-1/2 rounded-full py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
             type="submit"
           >
-            LOG IN
+            Login
           </button>
-          <NavLink className="text-center " to="/sign_up">
-            SIGN UP
-          </NavLink>
+          <div className="w-full mt-8 lg:mt-12 flex items-center justify-center gap-3">
+            <p>Not a member?</p>
+            <NavLink
+              className="py-2 text-fuchsia-400 text-lg font-medium"
+              to="/signup"
+            >
+              Signup
+            </NavLink>
+          </div>
         </form>
       </div>
     </div>

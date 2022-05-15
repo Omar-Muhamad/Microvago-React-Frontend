@@ -10,7 +10,6 @@ const Hotel = () => {
   }, []);
   return (
     <>
-      {/* <button type="button" onClick={handleClick}>Logout</button> */}
       <h1>Hotel list here</h1>
       <ul className="hotels">
         {hotels.map((hotel) => (
