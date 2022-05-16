@@ -2,12 +2,24 @@ import axios from 'axios';
 
 const API_URL = 'https://microvago.herokuapp.com';
 
-export const login = async () => axios({
+export const login = async (UserData) => axios({
   method: 'post',
   url: `${API_URL}/auth/login`,
   data: {
-    email: 'admin@gmail.com',
-    password: 'admin',
+    email: UserData.email,
+    password: UserData.password,
+  },
+});
+
+export const signUp = async (UserData) => axios({
+  method: 'post',
+  url: `${API_URL}/users`,
+  data: {
+    name: UserData.name,
+    admin: UserData.admin,
+    profile_picture: UserData.profile_picture,
+    email: UserData.email,
+    password: UserData.password,
   },
 });
 
