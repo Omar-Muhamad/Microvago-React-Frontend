@@ -52,14 +52,14 @@
 
 .files {
   visibility: hidden;
-  width: 0px;
-  height: 0px;
+  width: 0;
+  height: 0;
 }
 
 .file-button {
   border: 1px solid #fff;
   color: #fff;
-  /* background-color: #9a65fc; */
+
 }
 
 .file-button:hover {
