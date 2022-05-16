@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchHotels } from '../../redux/Hotel/hotel';
+import { API_URL } from '../../redux/api/apiHelper';
 
 const Hotels = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Hotels = () => {
                 <div className="imageContainer w-[300px] h-[170px]">
                   <img
                     className="w-full h-full rounded-lg"
-                    src={hotel.image}
+                    src={`${API_URL}${hotel.image.url}`}
                     alt={hotel.name}
                   />
                 </div>
