@@ -4,3 +4,9 @@
   background-size: cover;
 }
 
+.logo {
+  background-image: url(./img/logo.png);
+  background-position: center;
+  background-size: cover;
+}
+
