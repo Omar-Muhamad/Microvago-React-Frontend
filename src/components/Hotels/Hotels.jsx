@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchHotels } from '../../redux/Hotel/hotel';
 
-const Hotel = () => {
+const Hotels = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,4 +66,4 @@ const Hotel = () => {
   );
 };
 
-export default Hotel;
+export default Hotels;

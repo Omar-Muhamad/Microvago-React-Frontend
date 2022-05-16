@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkAuth } from './redux/Auth/auth';
 import './App.css';
 import Header from './components/Header/Header';
-import Hotel from './components/Hotels/Hotels';
-// import AddHotel from './components/AddHotel/AddHotel';
+import AddHotel from './components/Hotels/AddHotel';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
-
+import Hotels from './components/Hotels/Hotels';
 import Splash from './components/Splash/Splash';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
@@ -32,11 +31,11 @@ const App = () => {
         <Routes history={history}>
           {isAuthorized && (
             <>
-              <Route path="/" element={<Hotel />} />
+              <Route path="/" element={<Hotels />} />
+              <Route path="/addHotel" element={<AddHotel />} />
               {/* <Route path="/splash" element={<Splash />} /> */}
               {/* <Route path="/addReservation" element={<AddReservation />} />
           <Route path="/reservaions" element={<MyReservations />} />
-          <Route path="/addHotel" element={<AddHotel />} />
           <Route path="/delHotel" element={<DelHotel />} /> */}
             </>
           )}
