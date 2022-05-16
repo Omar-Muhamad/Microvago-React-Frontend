@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'https://microvago.herokuapp.com';
+// const API_URL = 'http://127.0.0.1:3000';
 
 export const login = async () => axios({
   method: 'post',
@@ -30,7 +31,7 @@ export const postHotels = async (hotel) => axios({
 
 export const getRooms = async () => axios({
   method: 'get',
-  url: `${API_URL}/rooms/index`,
+  url: `${API_URL}/rooms`,
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
