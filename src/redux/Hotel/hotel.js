@@ -14,6 +14,14 @@ export const fetchHotels = createAsyncThunk(
   },
 );
 
+export const putHotels = createAsyncThunk(
+  'put_hotels',
+  async (hotels) => {
+    const response = await apiHelper.postHotels(hotels);
+    return response.data;
+  },
+);
+
 const hotelSlice = createSlice({
   name: 'hotel',
   initialState,
