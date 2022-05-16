@@ -1,11 +1,10 @@
 import { NavLink } from 'react-router-dom';
+import logo from '../../img/logo.png';
 
 const Splash = () => (
   <div className="splashBG h-screen w-full flex flex-col  items-center justify-center bg-[#6D22FB]">
-    <div className="grow-[4] w-full flex items-center justify-center">
-      <h1 className="font-['Comfortaa'] text-white text-5xl font-bold">
-        Microvago
-      </h1>
+    <div className="grow-[4] w-1/3 flex items-center justify-center">
+      <img src={logo} alt="Logo of MicroVago" />
     </div>
     <div className="AuthenticationBtns grow flex flex-col gap-4 text-xl font-medium text-center w-full">
       <NavLink
