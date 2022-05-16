@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHotelsDetails } from '../../redux/Hotel/hotel';
 import { API_URL } from '../../redux/api/apiHelper';
+import HotelRoom from './HotelRoom';
 
 const HotelDetails = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const HotelDetails = () => {
         <div className="imageContainer w-[300px] h-[170px]">
           <img
             className="w-full h-full rounded-lg"
-            src={`${API_URL}${hotel.image.url}`}
+            src={`${API_URL}${hotel?.image?.url}`}
             alt={hotel.name}
           />
         </div>
@@ -40,6 +41,9 @@ const HotelDetails = () => {
           <p>{`Rating: ${hotel.rating}`}</p>
           <p>{`Description: ${hotel.description}`}</p>
         </div>
+        { hotel?.hotel_rooms?.map((room) => (
+          <HotelRoom key={room.id} hotelRoom={room} />
+        ))}
       </div>
     </div>
   );
