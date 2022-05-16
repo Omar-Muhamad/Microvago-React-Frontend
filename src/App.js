@@ -5,10 +5,10 @@ import { checkAuth } from './redux/Auth/auth';
 import './App.css';
 import Header from './components/Header/Header';
 import Hotel from './components/Hotels/Hotels';
-import AddHotel from './components/AddHotel/AddHotel';
+// import AddHotel from './components/AddHotel/AddHotel';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
-                                                                                                                      
+
 import Splash from './components/Splash/Splash';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
