@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkAuth } from './redux/Auth/auth';
 import './App.css';
 import Header from './components/Header/Header';
+import Hotel from './components/Hotels/Hotels';
 import AddHotel from './components/AddHotel/AddHotel';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
-import Hotel from './components/Hotel/Hotel';
+                                                                                                                      
 import Splash from './components/Splash/Splash';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
@@ -25,29 +26,31 @@ const App = () => {
   }, [dispatch, checkAuth]);
 
   return (
-    <>
+    <div className="grid grid-cols-5">
       {isAuthorized && <Header />}
-      <Routes history={history}>
-        {isAuthorized && (
-          <>
-            <Route path="/" element={<Hotel />} />
-            <Route path="/addHotel" element={<AddHotel />} />
-            {/* <Route path="/splash" element={<Splash />} /> */}
-            {/* <Route path="/addReservation" element={<AddReservation />} />
-        <Route path="/reservaions" element={<MyReservations />} />
-        <Route path="/delHotel" element={<DelHotel />} /> */}
-          </>
-        )}
-        {!isAuthorized && (
-          <>
-            <Route path="/" element={<Splash />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="*" element={<Splash />} />
-          </>
-        )}
-      </Routes>
-    </>
+      <div className="col-span-4">
+        <Routes history={history}>
+          {isAuthorized && (
+            <>
+              <Route path="/" element={<Hotel />} />
+              {/* <Route path="/splash" element={<Splash />} /> */}
+              {/* <Route path="/addReservation" element={<AddReservation />} />
+          <Route path="/reservaions" element={<MyReservations />} />
+          <Route path="/addHotel" element={<AddHotel />} />
+          <Route path="/delHotel" element={<DelHotel />} /> */}
+            </>
+          )}
+          {!isAuthorized && (
+            <>
+              <Route path="/" element={<Splash />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="*" element={<Splash />} />
+            </>
+          )}
+        </Routes>
+      </div>
+    </div>
   );
 };
 
