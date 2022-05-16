@@ -8,7 +8,7 @@ import Hotel from './components/Hotels/Hotels';
 import AddHotel from './components/AddHotel/AddHotel';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
-                                                                                                                      
+
 import Splash from './components/Splash/Splash';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
@@ -33,11 +33,11 @@ const App = () => {
           {isAuthorized && (
             <>
               <Route path="/" element={<Hotel />} />
-              {/* <Route path="/splash" element={<Splash />} /> */}
-              {/* <Route path="/addReservation" element={<AddReservation />} />
-          <Route path="/reservaions" element={<MyReservations />} />
-          <Route path="/addHotel" element={<AddHotel />} />
-          <Route path="/delHotel" element={<DelHotel />} /> */}
+              {/* <Route path="/splash" element={<Splash />} />
+              <Route path="/addReservation" element={<AddReservation />} />
+              <Route path="/reservaions" element={<MyReservations />} /> */}
+              <Route path="/addHotel" element={<AddHotel />} />
+              {/* <Route path="/delHotel" element={<DelHotel />} /> */}
             </>
           )}
           {!isAuthorized && (
