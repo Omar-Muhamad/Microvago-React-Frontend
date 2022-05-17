@@ -23,34 +23,34 @@ const App = () => {
     dispatch(fetchHotels());
     dispatch(fetchRooms());
     dispatch(checkAuth());
-  }, [dispatch, checkAuth]);
+  }, []);
 
   return (
-    <div className="grid grid-cols-5">
-      {isAuthorized && <Header />}
-      <div className="col-span-4">
-        <Routes history={history}>
+    <>
+      <div className="grid grid-cols-5">
+        {isAuthorized && <Header />}
+        <div className="col-span-4">
           {isAuthorized && (
-            <>
+            <Routes history={history}>
               <Route path="/" element={<Hotel />} />
               {/* <Route path="/splash" element={<Splash />} />
-              <Route path="/addReservation" element={<AddReservation />} />
-              <Route path="/reservaions" element={<MyReservations />} /> */}
+                <Route path="/addReservation" element={<AddReservation />} />
+                <Route path="/reservaions" element={<MyReservations />} /> */}
               <Route path="/addHotel" element={<AddHotel />} />
               {/* <Route path="/delHotel" element={<DelHotel />} /> */}
-            </>
+            </Routes>
           )}
-          {!isAuthorized && (
-            <>
-              <Route path="/" element={<Splash />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="*" element={<Splash />} />
-            </>
-          )}
-        </Routes>
+        </div>
       </div>
-    </div>
+      {!isAuthorized && (
+        <Routes history={history}>
+          <Route path="/" element={<Splash />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<Splash />} />
+        </Routes>
+      )}
+    </>
   );
 };
 
