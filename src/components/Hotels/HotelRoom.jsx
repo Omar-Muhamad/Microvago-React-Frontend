@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../redux/api/apiHelper';
 
-const HotelRoom = ({ hotelRoom }) => (
-	<div>
+const HotelRoom = ({ hotelRoom, hotelId }) => (
+<div>
 		<div className="hotelRoom">
 			<div className="imageContainer w-[300px] h-[170px]">
 				<img className="w-full h-full rounded-lg" src={`${API_URL}${hotelRoom?.featured_room_image?.url}`} alt={hotelRoom.name} />
@@ -17,9 +18,10 @@ const HotelRoom = ({ hotelRoom }) => (
 				<h2 className="hotelName my-3 text-black text-lg font-black text-center">
 					Up to: {hotelRoom.room.guests_number} guests
 				</h2>
+				<NavLink to={`/reservations/add?hotelId=${hotelId}&hotelRoomId=${hotelRoom.id}`}>Add reservation</NavLink>
 				<div className="text-center mb-3 text-gray-400">
 					-----------------------
-                </div>
+        </div>
 			</div>
 		</div>
 	</div>
@@ -39,6 +41,7 @@ HotelRoom.propTypes = {
 			guests_number: PropTypes.number.isRequired,
 		})
 	}).isRequired,
+	hotelId: PropTypes.number.isRequired,
 }
 
 export default HotelRoom;

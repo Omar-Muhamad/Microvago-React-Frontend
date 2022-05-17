@@ -17,7 +17,7 @@ const Header = () => {
       <nav className="nav row-span-3">
         <ul className="row-span-3 navLinks flex flex-col gap-10 text-center text-[gray] text-xl font-medium">
           <li className="navLink hover:text-black">
-            <NavLink to="/addReservation">Add reservation</NavLink>
+            <NavLink to="/reservations/add">Add reservation</NavLink>
           </li>
           <li className="navLink hover:text-black">
             <NavLink to="/reservaions">My reservations</NavLink>

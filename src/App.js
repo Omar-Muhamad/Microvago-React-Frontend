@@ -14,6 +14,7 @@ import Header from './components/Header/Header';
 import AddHotel from './components/Hotels/AddHotel';
 import Hotels from './components/Hotels/Hotels';
 import HotelDetails from './components/Hotels/HotelDetails';
+import AddReservation from './components/Reservations/AddReservation';
 
 const App = () => {
   // const router = useHistory();
@@ -36,6 +37,7 @@ const App = () => {
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
               <Route path="/hotels/:id" element={<HotelDetails />} />
+              <Route path="/reservations/add" element={<AddReservation />} />
               {/* <Route path="/splash" element={<Splash />} /> */}
               {/* <Route path="/addReservation" element={<AddReservation />} />
           <Route path="/reservaions" element={<MyReservations />} />
