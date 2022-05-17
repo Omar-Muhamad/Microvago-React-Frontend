@@ -23,7 +23,7 @@ const Header = () => {
             <NavLink to="/reservaions">My reservations</NavLink>
           </li>
           <li className="navLink hover:text-black">
-            <NavLink to="/addHotel">Add Hotel</NavLink>
+            <NavLink to="/hotels/add">Add Hotel</NavLink>
           </li>
           <li className="navLink hover:text-black">
             <NavLink to="/delHotel">Delete Hotel</NavLink>

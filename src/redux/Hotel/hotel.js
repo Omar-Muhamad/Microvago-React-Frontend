@@ -4,12 +4,21 @@ import * as apiHelper from '../api/apiHelper';
 
 const initialState = {
   hotels: [],
+  hotelDetails: {},
 };
 
 export const fetchHotels = createAsyncThunk(
   'hotels',
   async () => {
     const response = await apiHelper.getHotels();
+    return response.data;
+  },
+);
+
+export const fetchHotelsDetails = createAsyncThunk(
+  'hotels/details',
+  async (id) => {
+    const response = await apiHelper.getHotelDetails(id);
     return response.data;
   },
 );
@@ -30,6 +39,9 @@ const hotelSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchHotels.fulfilled, (state, action) => {
       state.hotels = action.payload;
+    });
+    builder.addCase(fetchHotelsDetails.fulfilled, (state, action) => {
+      state.hotelDetails = action.payload;
     });
   },
 });
