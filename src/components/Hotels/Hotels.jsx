@@ -29,40 +29,45 @@ const Hotels = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen max-h-screen overflow-y-auto">
-      <h1 className="text-4xl font-bold m-16">Hotel list here</h1>
-      <button type="button" onClick={handlePrev}>
-        Prev
-      </button>
-      <ul className="hotels flex flex-wrap gap-8">
-        {currentHotels
-          && currentHotels.map((hotel) => (
-            <li
-              key={hotel.id}
-              className="hotel max-w-[300px] min-w-[80px] hover:scale-110 box-content p-2 hover:bg-[#9867f5] hover:text-white rounded-xl"
-            >
-              <NavLink to={`hotels/${hotel.id}`}>
-                <div className="imageContainer w-[300px] h-[170px]">
-                  <img
-                    className="w-full h-full rounded-lg"
-                    src={`${API_URL}${hotel.image.url}`}
-                    alt={hotel.name}
-                  />
-                </div>
-                <div className="text-gray-400 hover:text-white">
-                  <h2 className="hotelName my-3 text-black text-lg font-black text-center">{hotel.name.toUpperCase()}</h2>
-                  <div className="text-center mb-3 text-gray-400">-----------------------</div>
-                  <p>{`Location: ${hotel.location}`}</p>
-                  <p>{`Rating: ${hotel.rating}`}</p>
-                  <p>{`Description: ${hotel.description}`}</p>
-                </div>
-              </NavLink>
-            </li>
-          ))}
-      </ul>
-      <button type="button" onClick={handleNext}>
-        Next
-      </button>
+    <div className="min-h-screen max-h-screen w-full overflow-y-auto text-center grid grid-rows-4 text-[#6D22FB]">
+      <div className="titleContainer flex flex-col items-center justify-end gap-3 text-gray-400">
+        <h1 className="text-6xl font-bold text-gray-700">Hotels List</h1>
+        <p className="text-lg">Click to view hotel details</p>
+        <p>------------------</p>
+      </div>
+      <div className="hotelsContainer row-span-3 w-full flex items-center">
+        <button className="px-4 pl-7 py-3 rounded-r-full h-fit bg-[#6D22FB]" type="button" onClick={handlePrev}>
+          <i className="fa-solid fa-angle-left fa-lg text-white" />
+        </button>
+        <ul className="hotels grow px-4 flex flex-wrap justify-center gap-6">
+          {currentHotels
+            && currentHotels.map((hotel) => (
+              <li
+                key={hotel.id}
+                className="hotel"
+              >
+                <NavLink to={`hotels/${hotel.id}`}>
+                  <div className="imageContainer w-[300px] h-[220px]">
+                    <img
+                      className="w-full h-full rounded-lg bg-[#6D22FB] rounded-tl-[35%] rounded-br-[35%]"
+                      src={`https://microvago.herokuapp.com${hotel.image.url}`}
+                      alt={hotel.name}
+                    />
+                  </div>
+                  <div className="text-gray-400">
+                    <h2 className="hotelName my-2 mt-8 text-black text-lg font-black text-center">{hotel.name.toUpperCase()}</h2>
+                    <div className="text-center mb-3 text-4x font-bold text-gray-400">------------------</div>
+                    <p>{`Location: ${hotel.location}`}</p>
+                    <p>{`Rating: ${hotel.rating}`}</p>
+                  </div>
+                </NavLink>
+              </li>
+            ))}
+        </ul>
+        <button className="px-4 pr-7 py-3 rounded-l-full h-fit bg-[#6D22FB]" type="button" onClick={handleNext}>
+          <i className="fa-solid fa-angle-right fa-lg text-white" />
+        </button>
+      </div>
     </div>
   );
 };
