@@ -33,13 +33,12 @@ const App = () => {
         <Routes history={history}>
           {isAuthorized && (
             <>
-              <Route path="/" element={<Hotels />} />
-              <Route path="/hotels/add" element={<AddHotel />} />
-              <Route path="/hotels/:id" element={<HotelDetails />} />
-              {/* <Route path="/splash" element={<Splash />} /> */}
-              {/* <Route path="/addReservation" element={<AddReservation />} />
-          <Route path="/reservaions" element={<MyReservations />} />
-          <Route path="/delHotel" element={<DelHotel />} /> */}
+              <Route path="/" element={<Hotel />} />
+              {/* <Route path="/splash" element={<Splash />} />
+              <Route path="/addReservation" element={<AddReservation />} />
+              <Route path="/reservaions" element={<MyReservations />} /> */}
+              <Route path="/addHotel" element={<AddHotel />} />
+              {/* <Route path="/delHotel" element={<DelHotel />} /> */}
             </>
           )}
           {!isAuthorized && (
