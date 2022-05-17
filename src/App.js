@@ -5,6 +5,7 @@ import history from './utils/history';
 import { checkAuth } from './redux/Auth/auth';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
+import { fetchReservation } from './redux/Reservation/reservation';
 import './App.css';
 
 import Splash from './components/Splash/Splash';
@@ -15,6 +16,7 @@ import AddHotel from './components/Hotels/AddHotel';
 import Hotels from './components/Hotels/Hotels';
 import HotelDetails from './components/Hotels/HotelDetails';
 import AddReservation from './components/Reservations/AddReservation';
+import MyReservations from './components/Reservations/MyReservations';
 
 const App = () => {
   // const router = useHistory();
@@ -25,6 +27,7 @@ const App = () => {
     dispatch(fetchHotels());
     dispatch(fetchRooms());
     dispatch(checkAuth());
+    dispatch(fetchReservation());
   }, [dispatch, checkAuth]);
 
   return (
@@ -38,6 +41,7 @@ const App = () => {
               <Route path="/hotels/add" element={<AddHotel />} />
               <Route path="/hotels/:id" element={<HotelDetails />} />
               <Route path="/reservations/add" element={<AddReservation />} />
+              <Route path="/myreservations" element={<MyReservations />} />
               {/* <Route path="/splash" element={<Splash />} /> */}
               {/* <Route path="/addReservation" element={<AddReservation />} />
           <Route path="/reservaions" element={<MyReservations />} />
