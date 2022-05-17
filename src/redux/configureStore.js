@@ -5,7 +5,9 @@ import hotelsReducer from './Hotel/hotel';
 import roomReducer from './Room/room';
 
 const store = configureStore({
-  reducer: { auth: authReducer, hotels: hotelsReducer, rooms: roomReducer },
+  reducer: {
+    auth: authReducer, hotels: hotelsReducer, rooms: roomReducer,
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

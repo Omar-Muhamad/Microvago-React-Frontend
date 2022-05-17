@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchHotels } from '../../redux/Hotel/hotel';
+import { API_URL } from '../../redux/api/apiHelper';
 
-const Hotel = () => {
+const Hotels = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -71,4 +72,4 @@ const Hotel = () => {
   );
 };
 
-export default Hotel;
+export default Hotels;
