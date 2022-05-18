@@ -27,11 +27,9 @@ const AddReservation = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(hotelRoomsSelectValue);
-    console.log(startDate.target.value);
     const reservation = {
       "hotel_room_id": hotelRoomsSelectValue,
-      "date": startDate.target.value
+      "date": startDate.target.value,
     } 
 
     dispatch(putReservation(reservation));
@@ -60,7 +58,7 @@ const AddReservation = () => {
       const hotelRoom = hotels.find((hotel) => hotel.id === parseInt(hotelsSelectValue, 10))?.hotel_rooms[0];
       setHotelRoomsSelectValue(hotelRoom.id);
     }
-  },[hotelsSelectValue])
+  }, [hotelsSelectValue]);
 
   return (
     <form onSubmit={submitHandler}>
@@ -79,7 +77,7 @@ const AddReservation = () => {
       <input required name="reservDate" type="date" min={getTodaysDate()} onChange={setStartDate}/>
       <div>{hotels.find((hotel) => hotel.id === parseInt(hotelsSelectValue, 10))?.hotel_rooms?.find((room) => room.id == parseInt(hotelRoomsSelectValue, 10))?.price}</div>
       </div>
-      <input name="reservSubmit" type="submit" value="Book Hotel Room" /> 
+      <input name="reservSubmit" type="submit" value="Book Hotel Room" />
     </form>
   );
 };

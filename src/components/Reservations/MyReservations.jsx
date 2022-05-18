@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReservation } from '../../redux/Reservation/reservation';
 import { API_URL } from '../../redux/api/apiHelper';
+import { fetchReservation, deleteReservation } from '../../redux/Reservation/reservation';
 
 const MyReservations = () => {
   const dispatch = useDispatch();
@@ -11,10 +11,10 @@ const MyReservations = () => {
   const [reservationsToDisplay, setReservationsToDisplay] = useState([]);
 
   useEffect(() => {
-    if(hotels.length > 0 && reservations.length > 0 && rooms.length > 0) {
-      const newReservations = []
+    if (hotels.length >= 0 && reservations.length >= 0 && rooms.length >= 0) {
+      const newReservations = [];
       reservations.forEach((reserv) => {
-        const resrvExtension = {}
+        const resrvExtension = {};
         const hotel = hotels.find((hotel) => hotel.id === reserv.hotel_room.hotel_id);
         const room = rooms.find((room) => room.id === reserv.hotel_room.room_id);
         const image = hotel.hotel_rooms.find((hr) => hr.id === reserv.hotel_room.id).featured_room_image;
@@ -24,7 +24,7 @@ const MyReservations = () => {
         resrvExtension['price'] = reserv.hotel_room.price;
         resrvExtension['imageSrc'] = `${API_URL}${image.url}`;
 
-        newReservations.push({...reserv, ...resrvExtension})
+        newReservations.push({...reserv, ...resrvExtension});
       });
       setReservationsToDisplay(newReservations);
     }
@@ -32,8 +32,12 @@ const MyReservations = () => {
 
   useEffect(() => {
     dispatch(fetchReservation());
-  }, [])
-  
+  }, []);
+
+  const handleDelete = (id) => {
+    dispatch(deleteReservation(id));
+  };
+
   return (
     <>
       <div>My Reservations</div>
@@ -44,6 +48,7 @@ const MyReservations = () => {
           <div>{reservation.roomType}</div>
           <div>{reservation.price}</div>
           <div>{reservation.date}</div>
+          <button type="button" onClick={() => handleDelete(reservation.id)}>Delete</button>
         </div>
       ))}
     </>

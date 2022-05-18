@@ -10,7 +10,6 @@ export const fetchReservation = createAsyncThunk(
   'reservation',
   async () => {
     const response = await apiHelper.getReservation();
-    // console.log('RESPONSE FROM RESERVATION:', response.data);
     return response.data;
   },
 );
@@ -23,6 +22,14 @@ export const putReservation = createAsyncThunk(
   },
 );
 
+export const deleteReservation = createAsyncThunk(
+  'delete/reservation',
+  async (id) => {
+    await apiHelper.removeReservation(id);
+    return id;
+  },
+);
+
 const reservationSlice = createSlice({
   name: 'reservation',
   initialState,
@@ -31,6 +38,12 @@ const reservationSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchReservation.fulfilled, (state, action) => {
       state.reservation = action.payload;
+    });
+    builder.addCase(putReservation.fulfilled, (state, action) => {
+      state.reservation = [...state.reservation, action.payload];
+    });
+    builder.addCase(deleteReservation.fulfilled, (state, action) => {
+      state.reservation = state.reservation.filter((reserve) => reserve.id !== action.payload);
     });
   },
 });

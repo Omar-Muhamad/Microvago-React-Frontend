@@ -54,7 +54,7 @@ export const deleteHotels = async (id) => axios({
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
-})
+});
 
 export const putReservation = async (reservationObj) => axios({
   method: 'post',
@@ -68,6 +68,14 @@ export const putReservation = async (reservationObj) => axios({
 export const getReservation = async () => axios({
   method: 'get',
   url: `${API_URL}/reservations`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+});
+
+export const removeReservation = async (id) => axios({
+  method: 'delete',
+  url: `${API_URL}/reservations/${id}`,
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },

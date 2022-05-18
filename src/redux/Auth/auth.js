@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
 // import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import history from '../../utils/history';
 import * as apiHelper from '../api/apiHelper';
 
 const initialState = {
   token: null,
   isAuthorized: false,
+  admin: false,
 };
 
 export const login = createAsyncThunk('auth/login', async (payload) => {
@@ -49,9 +49,8 @@ const authSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       localStorage.setItem('token', action.payload.token);
       state.token = action.payload.token;
+      state.admin = action.payload.admin;
       state.isAuthorized = true;
-      history.push('/');
-      history.go(0);
     });
     builder.addCase(signUp.fulfilled, (state) => ({
       ...state,
