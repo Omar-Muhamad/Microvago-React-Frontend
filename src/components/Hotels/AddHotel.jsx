@@ -140,43 +140,106 @@ const AddHotel = () => {
   };
 
   return (
-    <div className="form-container">
-      <h1 className="form-title">Add Hotel</h1>
-      <form onSubmit={submitHandler} className="hotel-form">
-        <input required onChange={(e) => dispatch({ type: 'name', payload: e.target.value })} name="name" className="hotel-input" type="text" placeholder="Enter hotel name" />
-        <input required onChange={(e) => dispatch({ type: 'location', payload: e.target.value })} className="hotel-input" type="text" placeholder="Enter hotel location" />
-        <textarea required onChange={(e) => dispatch({ type: 'description', payload: e.target.value })} className="hotel-input" id="hotel-description" placeholder="Enter hotel description" />
-        <input required onChange={(e) => dispatch({ type: 'rating', payload: e.target.value })} className="hotel-input" type="number" placeholder="Enter hotel rating" />
-        <label className="hotel-input file-button bg-purple-700" htmlFor="hotel-files">
-          Upload image
-          <input id="hotel-files" onChange={(e) => dispatch({ type: 'image', payload: e.target.files[0] })} className="hotel-input files" type="file" />
-        </label>
-        {isFormSubmitted && (
-          <div className="text-yellow-200 border p-2 rounded bg-red-800 w-3/4 text-center">{errorMessage}</div>
-        )}
-        <fieldset className="border rounded py-3 px-2 sm:px-6 w-4/5 sm:w-3/4 flex flex-col gap-2">
-          <legend className="font-bold">Available rooms:</legend>
-          {rooms.map((room) => (
-            <div key={room.id} className="flex items-center h-9">
-              <div className="w-2/5">
-                <input value={room.id} name={room.type} type="checkbox" checked={checkedState[room.id]?.checked || false} onChange={() => changeCheckboxHandler(room.id)} className="mr-2" />
-                <label htmlFor={room.type} className="mr-2">{room.type}</label>
+    <div className="formContainer splashBG bg-[#6D22FB] h-screen w-full flex items-center justify-center text-white text-center">
+      <div className="p-6 min-h-screen max-h-screen w-full overflow-y-auto w-full bg-black/[0.5] backdrop-blur-[3px]">
+        <h1 className="font-['Comfortaa'] text-white text-3xl font-bold">Add Hotel</h1>
+        <form onSubmit={submitHandler} className=" px-24 flex flex-col items-center justify-center gap-2 w-full text-lg w-full">
+          <div className="flex gap-12 w-full">
+            <div className="w-full">
+              <input
+                className="w-full p-3 mt-6 bg-transparent border-2 rounded-full font-medium text-center"
+                name="name"
+                type="text"
+                placeholder="Enter hotel name"
+                required
+                onChange={(e) => dispatch({ type: 'name', payload: e.target.value })}
+              />
+              <input
+                required
+                onChange={(e) => dispatch({ type: 'location', payload: e.target.value })}
+                className="w-full p-3 mt-6 bg-transparent border-2 rounded-full font-medium text-center"
+                type="text"
+                placeholder="Enter hotel location"
+              />
+              <input
+                required
+                onChange={(e) => dispatch({ type: 'rating', payload: e.target.value })}
+                className="w-full p-3 mt-6 bg-transparent border-2 rounded-full font-medium text-center"
+                type="number"
+                placeholder="Enter hotel rating"
+              />
+            </div>
+            <textarea
+              required
+              onChange={(e) => dispatch({ type: 'description', payload: e.target.value })}
+              className="w-full p-3 mt-6 bg-transparent border-2 rounded-[30px] font-medium text-center"
+              id="hotel-description"
+              placeholder="Enter hotel description"
+            />
+          </div>
+          <div className="w-full mt-6 flex flex-col text-center gap-8 text-gray-400">
+            <input
+              className="w-full p-3 pl-10 bg-transparent border-2 rounded-full font-medium text-center"
+              type="file"
+              id="hotel-files"
+              onChange={(e) => dispatch({ type: 'image', payload: e.target.files[0] })}
+            />
+            {isFormSubmitted && (
+              <div className="text-yellow-200 border p-2 rounded bg-red-800 w-3/4 text-center">
+                {errorMessage}
               </div>
-              {checkedState[room.id]?.checked
-                && (
-                  <div className="flex w-3/5">
-                    <input onChange={(e) => priceChangeHandler(e.target.value, room.id)} className="rounded-l-lg text-black pl-2 w-1/2 sm:w-auto flex-1" type="number" placeholder="Room price" required={checkedState[room.id]?.checked} />
-                    <label className={`file-button py-0.5 px-1 sm:py-1 sm:px-2 rounded-r-lg bg-${checkedState[room.id].image ? 'green' : 'purple'}-700`} htmlFor={room.id}>
-                      <i className="fa-solid fa-images" />
-                      <input id={room.id} onChange={(e) => roomImageChangeHandler(e.target.files[0], room.id)} className="files" type="file" />
+            )}
+            <div className="w-full min-h-[200px] pt-2 px-8 bg-transparent border-2 rounded-[30px] font-medium ">
+              <h3 className="mb-2">Select room type</h3>
+              {rooms.map((room) => (
+                <div key={room.id} className="flex items-center mb-4">
+                  <div className="flex items-center justify-center">
+                    <input
+                      value={room.id}
+                      name={room.type}
+                      type="checkbox"
+                      checked={checkedState[room.id]?.checked || false}
+                      onChange={() => changeCheckboxHandler(room.id)}
+                      className="mr-2"
+                    />
+                    <label htmlFor={room.type} className="">
+                      {room.type}
                     </label>
                   </div>
-                )}
+                  {checkedState[room.id]?.checked && (
+                    <div className="flex w-full gap-4 pl-4">
+                      <input
+                        onChange={(e) => priceChangeHandler(e.target.value, room.id)}
+                        className="rounded-full text-black px-4 flex-1"
+                        type="number"
+                        placeholder="Room price"
+                        required={checkedState[room.id]?.checked}
+                      />
+                      <label
+                        className="file-button p-1 bg-white rounded-full w-1/2"
+                        htmlFor={room.id}
+                      >
+                        <input
+                          id={room.id}
+                          onChange={(e) => roomImageChangeHandler(e.target.files[0], room.id)}
+                          className="files pl-4 w-fit"
+                          type="file"
+                        />
+                      </label>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
-        </fieldset>
-        <button className="hotel-input file-button bg-purple-700" type="submit">Submit</button>
-      </form>
+          </div>
+          <button
+            className="w-2/5 mt-4 rounded-full py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
+            type="submit"
+          >
+            Add new hotel
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
