@@ -16,12 +16,12 @@ const Login = () => {
 
     dispatch(login(UserData)).then(() => {
       if (loginStore === '') {
-        navigate('/login');
+        navigate('/');
       }
     });
 
     if (loginStore !== '') {
-      navigate('/');
+      navigate('/login');
     }
   };
 

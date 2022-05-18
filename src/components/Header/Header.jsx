@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/Auth/auth';
 
 const Header = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [navOpen, setNavOpen] = useState(false);
   const isAdmin = useSelector((state) => state.auth.admin);
 
   const navigate = useNavigate();
@@ -12,11 +15,14 @@ const Header = () => {
     navigate({ to: '/', replace: true });
   };
   return (
-    <header className="max-h-screen py-6 shadow-xl text-center flex flex-col justify-between text-gray-500">
-      <NavLink to="/" className="text-3xl font-bold text-gray-600">
+    <div className="py-6 shadow-xl text-center sm:relative flex bg-white flex-col justify-between sm:gap-40 text-gray-500 h-full">
+      <NavLink
+        to="/"
+        className="text-3xl hidden sm:flex justify-center font-bold text-gray-600"
+      >
         Microvago
       </NavLink>
-      <nav className="nav row-span-3 mt-[-80px]">
+      <nav className="nav">
         <ul className="row-span-3 flex flex-col gap-4 text-left text-xl font-medium">
           <li className="ml-3 pl-3 py-2 navLink hover:text-black text-white bg-[#6D22FB]">
             <NavLink to="/reservations/add">Add reservation</NavLink>
@@ -38,7 +44,7 @@ const Header = () => {
           }
         </ul>
       </nav>
-      <div className="headerBottom">
+      <div className="headerBottom mt-auto">
         <button
           className="logout px-6 py-2 bg-[#6D22FB] w-fit mx-auto rounded-full text-white flex items-center justify-center gap-3 hover:cursor-pointer"
           type="button"
@@ -65,7 +71,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-    </header>
+    </div>
   );
 };
 export default Header;

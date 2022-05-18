@@ -9,7 +9,7 @@ import './App.css';
 import Splash from './components/Splash/Splash';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
-import Header from './components/Header/Header';
+import Header from './components/Header/HeaderContainer';
 import AddHotel from './components/Hotels/AddHotel';
 import Hotels from './components/Hotels/Hotels';
 import HotelDetails from './components/Hotels/HotelDetails';
@@ -29,10 +29,10 @@ const App = () => {
 
   return (
     <>
-      <div className="grid grid-cols-5">
-        {isAuthorized && <Header />}
-        <div className="col-span-4">
-          {isAuthorized && (
+      {isAuthorized && (
+        <div className="grid grid-cols-5">
+          {isAuthorized && <Header />}
+          <div className="col-span-4">
             <Routes>
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
@@ -41,9 +41,9 @@ const App = () => {
               <Route path="/myreservations" element={<MyReservations />} />
               <Route path="/hotels/remove" element={<RemoveHotel />} />
             </Routes>
-          )}
+          </div>
         </div>
-      </div>
+      )}
       {!isAuthorized && (
         <Routes>
           <Route path="/" element={<Splash />} />
