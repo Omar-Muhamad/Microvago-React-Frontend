@@ -18,3 +18,7 @@
 .detailsList :nth-child(even) {
   background-color: lightgray;
 }
+
+.reserve-date::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
