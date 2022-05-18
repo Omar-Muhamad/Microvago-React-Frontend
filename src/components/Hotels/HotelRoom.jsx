@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { API_URL } from '../../redux/api/apiHelper';
 
 const HotelRoom = ({ hotelRoom }) => (
-  <div className="hotelRoom border-2 rounded-[30px] p-[30px] ">
-    <div className="imageContainer w-full h-[300px]">
+  <div className="hotelRoom border-2 rounded-[15px] sm:rounded-[30px] p-[20px] sm:p-[30px] shadow-xl">
+    <div className="imageContainer w-full h-[200px] sm:h-[300px]">
       <img
         className="w-full h-full bg-[#6D22FB] rounded-xl"
         src={`${API_URL}${hotelRoom?.featured_room_image?.url}`}

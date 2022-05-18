@@ -141,15 +141,15 @@ const AddHotel = () => {
 
   return (
     <div className="formContainer splashBG bg-[#6D22FB] h-hero sm:min-h-screen w-full flex items-center justify-center text-white text-center">
-      <div className="p-6 h-full w-full w-full bg-black/[0.5] backdrop-blur-[3px]">
+      <div className="px-6 py-14 lg:px-20 lg:py-40 h-full w-full w-full overflow-y-auto">
         <h1 className="font-['Comfortaa'] text-white text-3xl font-bold">
           Add Hotel
         </h1>
         <form
           onSubmit={submitHandler}
-          className=" px-24 flex flex-col items-center justify-center gap-2 w-full text-lg w-full"
+          className="sm:px-24 flex flex-col items-center justify-center gap-2 w-full text-lg w-full"
         >
-          <div className="flex gap-12 w-full">
+          <div className="flex flex-col sm:flex-row sm:gap-6 w-full">
             <div className="w-full">
               <input
                 className="w-full p-3 mt-6 bg-transparent border-2 rounded-full font-medium text-center"
@@ -183,12 +183,18 @@ const AddHotel = () => {
             />
           </div>
           <div className="w-full mt-6 flex flex-col text-center gap-8 text-gray-400">
-            <input
-              className="w-full p-3 pl-10 bg-transparent border-2 rounded-full font-medium text-center"
-              type="file"
-              id="hotel-files"
-              onChange={(e) => dispatch({ type: 'image', payload: e.target.files[0] })}
-            />
+            <div className=" w-full p-3 pl-10 bg-transparent border-2 rounded-full font-medium text-center relative">
+              <input
+                className="w-full z-100 opacity-0"
+                type="file"
+                id="hotel-files"
+                onChange={(e) => dispatch({ type: 'image', payload: e.target.files[0] })}
+              />
+              <p className="addImg absolute top-3 left-6">Add images</p>
+              <button type="button" className="absolute right-6 top-4">
+                <i className="fa-solid fa-images" />
+              </button>
+            </div>
             {isFormSubmitted && (
               <div className="text-yellow-200 border p-2 rounded bg-red-800 w-3/4 text-center">
                 {errorMessage}
@@ -197,7 +203,7 @@ const AddHotel = () => {
             <div className="w-full min-h-[200px] pt-2 px-8 bg-transparent border-2 rounded-[30px] font-medium ">
               <h3 className="mb-2">Select room type</h3>
               {rooms.map((room) => (
-                <div key={room.id} className="flex items-center mb-4">
+                <div key={room.id} className="flex w-full items-center mb-4">
                   <div className="flex items-center justify-center">
                     <input
                       value={room.id}
@@ -212,24 +218,25 @@ const AddHotel = () => {
                     </label>
                   </div>
                   {checkedState[room.id]?.checked && (
-                    <div className="flex w-full gap-4 pl-4">
+                    <div className="flex w-full gap-3 pl-4">
                       <input
                         onChange={(e) => priceChangeHandler(e.target.value, room.id)}
-                        className="rounded-full text-black px-4 flex-1"
+                        className="rounded-full w-1/2 text-black px-4 flex-1"
                         type="number"
                         placeholder="Room price"
                         required={checkedState[room.id]?.checked}
                       />
                       <label
-                        className="file-button p-1 bg-white rounded-full w-1/2"
+                        className="file-button px-2 bg-white rounded-full sm:w-1/2"
                         htmlFor={room.id}
                       >
                         <input
                           id={room.id}
                           onChange={(e) => roomImageChangeHandler(e.target.files[0], room.id)}
-                          className="files pl-4 w-fit"
+                          className="hidden"
                           type="file"
                         />
+                        <i className="fa-solid fa-images" />
                       </label>
                     </div>
                   )}
@@ -238,7 +245,7 @@ const AddHotel = () => {
             </div>
           </div>
           <button
-            className="w-2/5 mt-4 rounded-full py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
+            className="w-3/5 sm:w-2/5 mt-4 rounded-full py-2 sm:py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
             type="submit"
           >
             Add new hotel

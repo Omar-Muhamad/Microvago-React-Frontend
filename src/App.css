@@ -5,7 +5,7 @@
 }
 
 .splashBG {
-  background-image: linear-gradient(rgba(110, 35, 253, 0.8), rgba(110, 35, 253, 0.8)), url(./img/splash-bg.png);
+  background-image: linear-gradient(rgba(34, 1, 94, 0.8), rgba(34, 1, 94, 0.8)), url(./img/splash-bg.png);
   background-position: center;
   background-size: cover;
 }

@@ -31,7 +31,7 @@ const App = () => {
       {isAuthorized && (
         <div className="grid sm:grid-cols-5 w-full overflow-none">
           {isAuthorized && <Header />}
-          <div className="sm:col-span-4 col-span-full w-full h-full sm:w-auto mt-16 sm:mt-0">
+          <div className="sm:col-span-4 col-span-full w-full h-hero sm:h-full sm:w-auto mt-16 sm:mt-0">
             <Routes history={history}>
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
