@@ -1,8 +1,11 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/Auth/auth';
 
 const Header = () => {
+  const isAdmin = useSelector((state) => state.auth.admin);
+  console.log('is admin is ', isAdmin);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -22,12 +25,18 @@ const Header = () => {
           <li className="ml-3 pl-3 py-2 navLink hover:text-black">
             <NavLink to="/reservaions">My reservations</NavLink>
           </li>
-          <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink to="/addHotel">Add Hotel</NavLink>
-          </li>
-          <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink to="/delHotel">Delete Hotel</NavLink>
-          </li>
+          {
+            isAdmin && (
+              <>
+                <li className="ml-3 pl-3 py-2 navLink hover:text-black">
+                  <NavLink to="/addHotel">Add Hotel</NavLink>
+                </li>
+                <li className="ml-3 pl-3 py-2 navLink hover:text-black">
+                  <NavLink to="/delHotel">Delete Hotel</NavLink>
+                </li>
+              </>
+            )
+          }
         </ul>
       </nav>
       <div className="headerBottom">

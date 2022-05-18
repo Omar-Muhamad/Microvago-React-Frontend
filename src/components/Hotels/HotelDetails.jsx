@@ -17,7 +17,6 @@ const HotelDetails = () => {
 
   return (
     <div className="min-h-screen max-h-screen overflow-y-auto">
-      <div>Reservations</div>
       <div
         key={hotel.id}
         className="hotel max-w-[300px] min-w-[80px]
@@ -42,7 +41,7 @@ const HotelDetails = () => {
           <p>{`Description: ${hotel.description}`}</p>
         </div>
         { hotel?.hotel_rooms?.map((room) => (
-          <HotelRoom key={room.id} hotelRoom={room} />
+          <HotelRoom key={room.id} hotelRoom={room} hotelId={hotel.id} />
         ))}
       </div>
     </div>

@@ -14,9 +14,11 @@ import Header from './components/Header/Header';
 import AddHotel from './components/Hotels/AddHotel';
 import Hotels from './components/Hotels/Hotels';
 import HotelDetails from './components/Hotels/HotelDetails';
+import AddReservation from './components/Reservations/AddReservation';
+import MyReservations from './components/Reservations/MyReservations';
+import RemoveHotel from './components/Hotels/RemoveHotel';
 
 const App = () => {
-  // const router = useHistory();
   const dispatch = useDispatch();
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
@@ -36,10 +38,12 @@ const App = () => {
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
               <Route path="/hotels/:id" element={<HotelDetails />} />
+              <Route path="/reservations/add" element={<AddReservation />} />
+              <Route path="/myreservations" element={<MyReservations />} />
+              <Route path="/hotels/remove" element={<RemoveHotel />} />
               {/* <Route path="/splash" element={<Splash />} /> */}
               {/* <Route path="/addReservation" element={<AddReservation />} />
-          <Route path="/reservaions" element={<MyReservations />} />
-          <Route path="/delHotel" element={<DelHotel />} /> */}
+          <Route path="/reservaions" element={<MyReservations />} /> */}
             </>
           )}
         </div>

@@ -48,6 +48,39 @@ export const postHotels = async (hotel) => axios({
   data: hotel,
 });
 
+export const deleteHotels = async (id) => axios({
+  method: 'delete',
+  url: `${API_URL}/hotels/${id}`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+});
+
+export const putReservation = async (reservationObj) => axios({
+  method: 'post',
+  url: `${API_URL}/reservations`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+  data: reservationObj,
+});
+
+export const getReservation = async () => axios({
+  method: 'get',
+  url: `${API_URL}/reservations`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+});
+
+export const removeReservation = async (id) => axios({
+  method: 'delete',
+  url: `${API_URL}/reservations/${id}`,
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+});
+
 export const getRooms = async () => axios({
   method: 'get',
   url: `${API_URL}/rooms`,
