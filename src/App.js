@@ -5,7 +5,6 @@ import history from './utils/history';
 import { checkAuth } from './redux/Auth/auth';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
-import { fetchReservation } from './redux/Reservation/reservation';
 import './App.css';
 
 import Splash from './components/Splash/Splash';
@@ -27,7 +26,6 @@ const App = () => {
     dispatch(fetchHotels());
     dispatch(fetchRooms());
     dispatch(checkAuth());
-    dispatch(fetchReservation());
   }, [dispatch, checkAuth]);
 
   return (
