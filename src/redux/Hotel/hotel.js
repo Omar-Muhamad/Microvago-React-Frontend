@@ -31,6 +31,14 @@ export const putHotels = createAsyncThunk(
   },
 );
 
+export const deleteHotel = createAsyncThunk(
+  'delete_hotel',
+  async (id) => {
+    const response = await apiHelper.deleteHotels(id);
+    return response.data;
+  },
+);
+
 const hotelSlice = createSlice({
   name: 'hotel',
   initialState,
@@ -45,7 +53,5 @@ const hotelSlice = createSlice({
     });
   },
 });
-
-// export const {  } = hotelSlice.actions;
 
 export default hotelSlice.reducer;

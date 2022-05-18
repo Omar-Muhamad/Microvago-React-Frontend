@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { logout } from '../../redux/Auth/auth';
 
 const Header = () => {
   // eslint-disable-next-line no-unused-vars
   const [navOpen, setNavOpen] = useState(false);
+  const isAdmin = useSelector((state) => state.auth.admin);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -22,26 +24,24 @@ const Header = () => {
       </NavLink>
       <nav className="nav">
         <ul className="row-span-3 flex flex-col gap-4 text-left text-xl font-medium">
-          <li className="close-navbar ml-3 pl-3 py-2 navLink hover:text-black text-white bg-[#6D22FB]">
-            <NavLink className="close-navbar" to="/addReservation">
-              Add reservation
-            </NavLink>
+          <li className="ml-3 pl-3 py-2 navLink hover:text-black text-white bg-[#6D22FB]">
+            <NavLink to="/reservations/add">Add reservation</NavLink>
           </li>
-          <li className="close-navbar ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink className="close-navbar" to="/reservaions">
-              My reservations
-            </NavLink>
+          <li className="ml-3 pl-3 py-2 navLink hover:text-black">
+            <NavLink to="/myreservations">My reservations</NavLink>
           </li>
-          <li className="close-navbar ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink className="close-navbar" to="/hotels/add">
-              Add Hotel
-            </NavLink>
-          </li>
-          <li className="close-navbar ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink className="close-navbar" to="/delHotel">
-              Delete Hotel
-            </NavLink>
-          </li>
+          {
+            isAdmin && (
+              <>
+                <li className="ml-3 pl-3 py-2 navLink hover:text-black">
+                  <NavLink to="/hotels/add">Add Hotel</NavLink>
+                </li>
+                <li className="ml-3 pl-3 py-2 navLink hover:text-black">
+                  <NavLink to="/hotels/remove">Delete Hotel</NavLink>
+                </li>
+              </>
+            )
+          }
         </ul>
       </nav>
       <div className="headerBottom mt-auto">

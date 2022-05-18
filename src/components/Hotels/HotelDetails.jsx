@@ -52,6 +52,9 @@ const HotelDetails = () => {
             <HotelRoom key={room.id} hotelRoom={room} />
           ))}
         </div>
+        { hotel?.hotel_rooms?.map((room) => (
+          <HotelRoom key={room.id} hotelRoom={room} hotelId={hotel.id} />
+        ))}
       </div>
     </div>
   );

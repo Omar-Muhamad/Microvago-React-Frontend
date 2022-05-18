@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import history from './utils/history';
 import { checkAuth } from './redux/Auth/auth';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
@@ -14,9 +13,11 @@ import Header from './components/Header/HeaderContainer';
 import AddHotel from './components/Hotels/AddHotel';
 import Hotels from './components/Hotels/Hotels';
 import HotelDetails from './components/Hotels/HotelDetails';
+import AddReservation from './components/Reservations/AddReservation';
+import MyReservations from './components/Reservations/MyReservations';
+import RemoveHotel from './components/Hotels/RemoveHotel';
 
 const App = () => {
-  // const router = useHistory();
   const dispatch = useDispatch();
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
@@ -29,23 +30,22 @@ const App = () => {
   return (
     <>
       {isAuthorized && (
-        <div className="grid sm:grid-cols-5 w-full overflow-none">
+        <div className="grid grid-cols-5">
           {isAuthorized && <Header />}
-          <div className="sm:col-span-4 col-span-full w-full h-hero sm:h-full sm:w-auto mt-16 sm:mt-0">
-            <Routes history={history}>
+          <div className="col-span-4">
+            <Routes>
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
               <Route path="/hotels/:id" element={<HotelDetails />} />
-              {/* <Route path="/splash" element={<Splash />} /> */}
-              {/* <Route path="/addReservation" element={<AddReservation />} />
-          <Route path="/reservaions" element={<MyReservations />} />
-          <Route path="/delHotel" element={<DelHotel />} /> */}
+              <Route path="/reservations/add" element={<AddReservation />} />
+              <Route path="/myreservations" element={<MyReservations />} />
+              <Route path="/hotels/remove" element={<RemoveHotel />} />
             </Routes>
           </div>
         </div>
       )}
       {!isAuthorized && (
-        <Routes history={history}>
+        <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

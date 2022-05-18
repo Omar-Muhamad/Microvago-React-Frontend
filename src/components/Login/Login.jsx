@@ -1,8 +1,9 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/Auth/auth';
 
 const Login = () => {
+  const loginStore = useSelector((state) => state.auth.error);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -13,8 +14,15 @@ const Login = () => {
       password: e.target.password.value,
     };
 
-    dispatch(login(UserData));
-    navigate('/hotels');
+    dispatch(login(UserData)).then(() => {
+      if (loginStore === '') {
+        navigate('/');
+      }
+    });
+
+    if (loginStore !== '') {
+      navigate('/login');
+    }
   };
 
   return (
@@ -45,6 +53,9 @@ const Login = () => {
           >
             Login
           </button>
+          { loginStore && (
+            <p>{loginStore}</p>
+          )}
           <div className="w-full mt-8 lg:mt-12 flex items-center justify-center gap-3">
             <p>Not a member?</p>
             <NavLink
