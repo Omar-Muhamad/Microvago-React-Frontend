@@ -9,3 +9,12 @@
   background-position: center;
   background-size: cover;
 }
+
+.detailsList {
+  background-color: white;
+  text-align: left;
+}
+
+.detailsList :nth-child(even) {
+  background-color: lightgray;
+}

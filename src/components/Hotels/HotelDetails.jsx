@@ -16,34 +16,42 @@ const HotelDetails = () => {
   const hotel = useSelector((state) => state.hotels.hotelDetails);
 
   return (
-    <div className="min-h-screen max-h-screen overflow-y-auto">
-      <div>Reservations</div>
+    <div className="h-hero sm:min-h-screen  w-full px-10 overflow-y-auto text-black border-b-2">
       <div
-        key={hotel.id}
-        className="hotel max-w-[300px] min-w-[80px]
-        hover:scale-110 box-content p-2 hover:bg-[#9867f5] hover:text-white rounded-xl"
+        id={hotel.id}
+        className="hotelContainer mt-24 pb-6 grid grid-cols-5 gap-6 text-left border-b-2 border-dashed"
       >
-        <div className="imageContainer w-[300px] h-[170px]">
+        <div className="imageContainer col-span-3 h-[60vh]">
           <img
-            className="w-full h-full rounded-lg"
+            className="w-full h-full rounded-lg bg-[#6D22FB] rounded-tl-[35%] rounded-br-[35%]"
             src={`${API_URL}${hotel?.image?.url}`}
             alt={hotel.name}
           />
         </div>
-        <div className="text-gray-400 hover:text-white">
-          <h2 className="hotelName my-3 text-black text-lg font-black text-center">
-            {hotel.name}
-          </h2>
-          <div className="text-center mb-3 text-gray-400">
-            -----------------------
-          </div>
-          <p>{`Location: ${hotel.location}`}</p>
-          <p>{`Rating: ${hotel.rating}`}</p>
-          <p>{`Description: ${hotel.description}`}</p>
+        <div className="hotelDetails col-span-2">
+          <h1 className="hotelName mt-2 text-3xl font-black">{hotel.name}</h1>
+          <div className="mb-3 text-gray-400">------------------</div>
+          <ul className="detailsList text-md font-medium flex flex-col gap-1">
+            <li>Location:</li>
+            <li className="py-1 rounded-[5px] text-center">{hotel.location}</li>
+            <li>Rating:</li>
+            <li className="py-1 rounded-[5px] text-center">{hotel.rating}</li>
+            <li>Description:</li>
+            <li className="py-1 px-4 rounded-[5px] text-left">
+              {hotel.description}
+            </li>
+          </ul>
         </div>
-        { hotel?.hotel_rooms?.map((room) => (
-          <HotelRoom key={room.id} hotelRoom={room} />
-        ))}
+      </div>
+      <div className="hotelRooms w-full my-10 flex flex-col gap-10 items-center">
+        <h2 className="hotelName text-3xl font-bold border-b-6 border-dashed">
+          Hotel Rooms
+        </h2>
+        <div className="roomContainer w-full grid grid-cols-2 grow justify-center gap-12">
+          {hotel?.hotel_rooms?.map((room) => (
+            <HotelRoom key={room.id} hotelRoom={room} />
+          ))}
+        </div>
       </div>
     </div>
   );

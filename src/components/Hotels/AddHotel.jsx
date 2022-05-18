@@ -140,10 +140,15 @@ const AddHotel = () => {
   };
 
   return (
-    <div className="formContainer splashBG bg-[#6D22FB] h-screen w-full flex items-center justify-center text-white text-center">
-      <div className="p-6 min-h-screen max-h-screen w-full overflow-y-auto w-full bg-black/[0.5] backdrop-blur-[3px]">
-        <h1 className="font-['Comfortaa'] text-white text-3xl font-bold">Add Hotel</h1>
-        <form onSubmit={submitHandler} className=" px-24 flex flex-col items-center justify-center gap-2 w-full text-lg w-full">
+    <div className="formContainer splashBG bg-[#6D22FB] h-hero sm:min-h-screen w-full flex items-center justify-center text-white text-center">
+      <div className="p-6 h-full w-full w-full bg-black/[0.5] backdrop-blur-[3px]">
+        <h1 className="font-['Comfortaa'] text-white text-3xl font-bold">
+          Add Hotel
+        </h1>
+        <form
+          onSubmit={submitHandler}
+          className=" px-24 flex flex-col items-center justify-center gap-2 w-full text-lg w-full"
+        >
           <div className="flex gap-12 w-full">
             <div className="w-full">
               <input

@@ -2,43 +2,45 @@ import PropTypes from 'prop-types';
 import { API_URL } from '../../redux/api/apiHelper';
 
 const HotelRoom = ({ hotelRoom }) => (
-	<div>
-		<div className="hotelRoom">
-			<div className="imageContainer w-[300px] h-[170px]">
-				<img className="w-full h-full rounded-lg" src={`${API_URL}${hotelRoom?.featured_room_image?.url}`} alt={hotelRoom.name} />
-			</div>
-			<div className="text-gray-400 hover:text-white">
-				<h2 className="hotelName my-3 text-black text-lg font-black text-center">
-					{hotelRoom.room.type}
-				</h2>
-				<h2 className="hotelName my-3 text-black text-lg font-black text-center">
-					{hotelRoom.price}
-				</h2>
-				<h2 className="hotelName my-3 text-black text-lg font-black text-center">
-					Up to: {hotelRoom.room.guests_number} guests
-				</h2>
-				<div className="text-center mb-3 text-gray-400">
-					-----------------------
-                </div>
-			</div>
-		</div>
-	</div>
+  <div className="hotelRoom border-2 rounded-[30px] p-[30px] ">
+    <div className="imageContainer w-full h-[300px]">
+      <img
+        className="w-full h-full bg-[#6D22FB] rounded-xl"
+        src={`${API_URL}${hotelRoom?.featured_room_image?.url}`}
+        alt={hotelRoom.name}
+      />
+    </div>
+    <ul className="detailsList mt-6 text-lg font-medium flex flex-col gap-1">
+      <li>Room type:</li>
+      <li className="py-1 rounded-[5px] text-center">
+        {hotelRoom.room.type}
+      </li>
+      <li>Price:</li>
+      <li className="py-1 rounded-[5px] text-center">
+        {`${hotelRoom.price} $`}
+      </li>
+      <li>Capacity:</li>
+      <li className="py-1 rounded-[5px] text-center">
+        {`Up to ${hotelRoom.room.guests_number} guests`}
+      </li>
+    </ul>
+  </div>
 );
 
 HotelRoom.propTypes = {
-	hotelRoom: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		id: PropTypes.string.isRequired,
-		price: PropTypes.number.isRequired,
-		featured_room_image: PropTypes.shape({
-			url: PropTypes.string.isRequired,
-		}),
-		room: PropTypes.shape({
-			number: PropTypes.number.isRequired,
-			type: PropTypes.string.isRequired,
-			guests_number: PropTypes.number.isRequired,
-		})
-	}).isRequired,
-}
+  hotelRoom: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    featured_room_image: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }),
+    room: PropTypes.shape({
+      number: PropTypes.number.isRequired,
+      type: PropTypes.string.isRequired,
+      guests_number: PropTypes.number.isRequired,
+    }),
+  }).isRequired,
+};
 
 export default HotelRoom;
