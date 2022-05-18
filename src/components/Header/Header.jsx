@@ -4,7 +4,6 @@ import { logout } from '../../redux/Auth/auth';
 
 const Header = () => {
   const isAdmin = useSelector((state) => state.auth.admin);
-  console.log('is admin is ', isAdmin);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,19 +19,19 @@ const Header = () => {
       <nav className="nav row-span-3 mt-[-80px]">
         <ul className="row-span-3 flex flex-col gap-4 text-left text-xl font-medium">
           <li className="ml-3 pl-3 py-2 navLink hover:text-black text-white bg-[#6D22FB]">
-            <NavLink to="/addReservation">Add reservation</NavLink>
+            <NavLink to="/reservations/add">Add reservation</NavLink>
           </li>
           <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink to="/reservaions">My reservations</NavLink>
+            <NavLink to="/myreservations">My reservations</NavLink>
           </li>
           {
             isAdmin && (
               <>
                 <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-                  <NavLink to="/addHotel">Add Hotel</NavLink>
+                  <NavLink to="/hotels/add">Add Hotel</NavLink>
                 </li>
                 <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-                  <NavLink to="/delHotel">Delete Hotel</NavLink>
+                  <NavLink to="/hotels/remove">Delete Hotel</NavLink>
                 </li>
               </>
             )

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import history from './utils/history';
 import { checkAuth } from './redux/Auth/auth';
 import { fetchRooms } from './redux/Room/room';
 import { fetchHotels } from './redux/Hotel/hotel';
@@ -34,22 +33,19 @@ const App = () => {
         {isAuthorized && <Header />}
         <div className="col-span-4">
           {isAuthorized && (
-            <>
+            <Routes>
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
               <Route path="/hotels/:id" element={<HotelDetails />} />
               <Route path="/reservations/add" element={<AddReservation />} />
               <Route path="/myreservations" element={<MyReservations />} />
               <Route path="/hotels/remove" element={<RemoveHotel />} />
-              {/* <Route path="/splash" element={<Splash />} /> */}
-              {/* <Route path="/addReservation" element={<AddReservation />} />
-          <Route path="/reservaions" element={<MyReservations />} /> */}
-            </>
+            </Routes>
           )}
         </div>
       </div>
       {!isAuthorized && (
-        <Routes history={history}>
+        <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

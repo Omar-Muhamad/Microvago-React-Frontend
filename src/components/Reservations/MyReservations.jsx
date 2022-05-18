@@ -11,7 +11,7 @@ const MyReservations = () => {
   const [reservationsToDisplay, setReservationsToDisplay] = useState([]);
 
   useEffect(() => {
-    if (hotels.length >= 0 && reservations.length >= 0 && rooms.length >= 0) {
+    if (hotels.length > 0 && reservations.length >= 0 && rooms.length > 0) {
       const newReservations = [];
       reservations.forEach((reserv) => {
         const resrvExtension = {};
