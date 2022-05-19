@@ -52,27 +52,40 @@ const MyReservations = () => {
   };
 
   return (
-    <>
-      <div>My Reservations</div>
+    <div className="sm: w-screen flex flex-col justify-center items-center gap-10 pb-10">
+      <h1 className="pt-24 md:pt-8 text-3xl font-bold border-b-6 border-dashed">My Reservations</h1>
       {isLoading && (<Spinner parentClasses='grow flex justify-center' classes='bg-gray-400'/>)}
       {!isLoading && reservationsToDisplay.length > 0 
-          && ( <div>
-        {reservationsToDisplay?.map((reservation) => (
-          <div key={reservation.id}>
-            <div>
-              <img src={reservation.imageSrc} alt="Hotel room reserved" />
+          && (
+        <>
+          {reservationsToDisplay?.map((reservation) => (
+          <div className="md:w-1/3 border-2 rounded-[15px] sm:rounded-[30px] p-[20px] sm:p-[30px] shadow-xl" key={reservation.id}>
+            <div className="w-full h-[200px] sm:h-[300px]">
+              <img className="w-fit h-full bg-[#6D22FB] rounded-xl" src={reservation.imageSrc} alt="Hotel room reserved" />
             </div>
-            <div>{reservation.hotelName}</div>
-            <div>{reservation.roomType}</div>
-            <div>{reservation.price}</div>
-            <div>{reservation.date}</div>
-            <button type="button" onClick={() => handleDelete(reservation.id)}>
-              Delete
-            </button>
+            <ul className="detailsList mt-6 text-lg font-medium flex flex-col gap-1">
+              <li>Hotel: </li>
+              <li className="py-1 rounded-[5px] text-center">{reservation.hotelName}</li>
+              <li>Room: </li>
+              <li className="py-1 rounded-[5px] text-center">{reservation.roomType}</li>
+              <li>Price: </li>
+              <li className="py-1 rounded-[5px] text-center">
+                $
+                {reservation.price}
+                {' '}
+                USD
+              </li>
+              <li>Reservation Date:</li>
+              <li className="py-1 rounded-[5px] text-center">{reservation.date}</li>
+              <button className="my-5 text-2xl bg-red-600 rounded-full p-3 text-white" type="button" onClick={() => handleDelete(reservation.id)}>
+                Cancel Reservation
+              </button>
+            </ul>
           </div>
         ))}
-      </div> )}
-    </>
+        </>
+      )}
+    </div>
   );
 };
 
