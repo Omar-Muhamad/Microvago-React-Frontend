@@ -51,6 +51,9 @@ const hotelSlice = createSlice({
     builder.addCase(fetchHotelsDetails.fulfilled, (state, action) => {
       state.hotelDetails = action.payload;
     });
+    builder.addCase(putHotels.fulfilled, (state, action) => {
+      state.hotels = [...state.hotels, action.payload];
+    });
   },
 });
 

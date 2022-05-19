@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuth } from './redux/Auth/auth';
 import { fetchRooms } from './redux/Room/room';
-import { fetchHotels } from './redux/Hotel/hotel';
 import './App.css';
 
 import Splash from './components/Splash/Splash';
@@ -22,10 +21,11 @@ const App = () => {
   const isAuthorized = useSelector((state) => state.auth.isAuthorized);
 
   useEffect(() => {
-    dispatch(fetchHotels());
-    dispatch(fetchRooms());
+    if (isAuthorized) {
+      dispatch(fetchRooms());
+    }
     dispatch(checkAuth());
-  }, []);
+  }, [isAuthorized]);
 
   return (
     <>

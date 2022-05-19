@@ -1,27 +1,28 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/Auth/auth';
+import { startLoading, stopLoading } from '../../redux/UI/ui';
+import Spinner from '../Spinner/Spinner';
 
 const Login = () => {
   const loginStore = useSelector((state) => state.auth.error);
+  const isLoading = useSelector((state) => state.ui.isLoading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const authenticate = (e) => {
+  const authenticate = async (e) => {
     e.preventDefault();
     const UserData = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    dispatch(login(UserData)).then(() => {
-      if (loginStore === '') {
-        navigate('/');
-      }
-    });
+    dispatch(startLoading());
+    const res = await dispatch(login(UserData));
+    dispatch(stopLoading());
 
-    if (loginStore !== '') {
-      navigate('/login');
+    if (!res.payload.error) {
+      navigate('/');
     }
   };
 
@@ -51,7 +52,7 @@ const Login = () => {
             className="w-1/2 rounded-full py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
             type="submit"
           >
-            Login
+            { isLoading ? (<Spinner classes={'bg-white'}/>) : 'Login' }
           </button>
           { loginStore && (
             <p>{loginStore}</p>

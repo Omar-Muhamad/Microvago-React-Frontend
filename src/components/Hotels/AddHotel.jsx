@@ -120,7 +120,7 @@ const AddHotel = () => {
 
     dispatcher(putHotels(formData));
     setIsFormSubmitted(false);
-    navigate('/hotels');
+    navigate('/');
   };
 
   const priceChangeHandler = (price, id) => {
