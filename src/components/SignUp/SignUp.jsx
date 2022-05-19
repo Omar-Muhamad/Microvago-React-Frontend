@@ -5,7 +5,6 @@ import { signUp } from '../../redux/Auth/auth';
 import { startLoading, stopLoading } from '../../redux/UI/ui';
 import Spinner from '../Spinner/Spinner';
 
-
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

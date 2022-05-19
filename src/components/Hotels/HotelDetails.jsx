@@ -42,7 +42,7 @@ const HotelDetails = () => {
             </li>
             <NavLink className="my-5 text-xl font-medium bg-green-500 rounded-[10px] p-3 text-white text-center" to="/reservations/add">
               <button type="button">Reserve</button>
-            </NavLink> 
+            </NavLink>
           </ul>
         </div>
       </div>
