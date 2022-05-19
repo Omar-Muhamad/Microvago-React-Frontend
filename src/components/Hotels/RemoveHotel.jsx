@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { NavLink } from 'react-router-dom';
 import { deleteHotel, fetchHotels } from '../../redux/Hotel/hotel';
 import { API_URL } from '../../redux/api/apiHelper';
+import { startLoading, stopLoading } from '../../redux/UI/ui';
+
+import Spinner from '../Spinner/Spinner';
 
 const RemoveHotel = () => {
   const dispatch = useDispatch();
 
   const hotels = useSelector((state) => state.hotels.hotels);
+  const isLoading = useSelector((state) => state.ui.isLoading);
   const [count, setCount] = useState(0);
 
   const currentHotels = hotels.slice(3 * count, 3 * count + 3);
@@ -25,8 +29,11 @@ const RemoveHotel = () => {
   };
 
   const handleDelete = async (id) => {
+    dispatch(startLoading());
     await dispatch(deleteHotel(id));
-    dispatch(fetchHotels());
+    dispatch(fetchHotels()).then(() => {
+      dispatch(stopLoading());
+    });
   };
 
   return (
@@ -35,6 +42,8 @@ const RemoveHotel = () => {
       <button type="button" onClick={handlePrev}>
         Prev
       </button>
+      {isLoading && (<Spinner parentClasses='grow flex justify-center' classes='bg-gray-400'/>)}
+      {!isLoading && currentHotels.length > 0 && (
       <ul className="hotels flex flex-wrap gap-8">
         {currentHotels
           && currentHotels.map((hotel) => (
@@ -56,7 +65,7 @@ const RemoveHotel = () => {
               <button type="button" onClick={() => handleDelete(hotel.id)} className="p-4 bg-red-600">Delete</button>
             </li>
           ))}
-      </ul>
+      </ul> )}
       <button type="button" onClick={handleNext}>
         Next
       </button>
