@@ -4,14 +4,14 @@ import { API_URL } from '../../redux/api/apiHelper';
 import { fetchReservation, deleteReservation } from '../../redux/Reservation/reservation';
 import { startLoading, stopLoading } from '../../redux/UI/ui';
 
-import Spinner from '../Spinner/Spinner';
+// import Spinner from '../Spinner/Spinner';
 
 const MyReservations = () => {
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservations.reservation);
   const hotels = useSelector((state) => state.hotels.hotels);
   const rooms = useSelector((state) => state.rooms.rooms);
-  const isLoading = useSelector((state) => state.ui.isLoading);
+  // const isLoading = useSelector((state) => state.ui.isLoading);
   const [reservationsToDisplay, setReservationsToDisplay] = useState([]);
 
   useEffect(() => {
@@ -52,39 +52,32 @@ const MyReservations = () => {
   };
 
   return (
-    <div className="sm: w-screen flex flex-col justify-center items-center gap-10 pb-10">
-      <h1 className="pt-24 md:pt-8 text-3xl font-bold border-b-6 border-dashed">My Reservations</h1>
-      {isLoading && (<Spinner parentClasses='grow flex justify-center' classes='bg-gray-400'/>)}
-      {!isLoading && reservationsToDisplay.length > 0 
-          && (
-        <>
-          {reservationsToDisplay?.map((reservation) => (
-          <div className="md:w-1/3 border-2 rounded-[15px] sm:rounded-[30px] p-[20px] sm:p-[30px] shadow-xl" key={reservation.id}>
+    <div className="h-hero sm:min-h-screen h-full w-full overflow-y-auto text-center flex flex-col px-6 sm:px-14 py-10 sm:py-20">
+      <div className="titleContainer flex flex-col items-center justify-end gap-3 text-gray-400">
+        <h1 className="text-4xl sm:text-6xl font-bold text-gray-700">My Reservations</h1>
+      </div>
+      <ul className="w-full grid grid-cols-1 sm:grid-cols-2 sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-14">
+        {reservationsToDisplay?.map((reservation) => (
+          <li className="w-full border-2 rounded-[15px] sm:rounded-[30px] p-[20px] sm:p-[30px] shadow-xl" key={reservation.id}>
             <div className="w-full h-[200px] sm:h-[300px]">
-              <img className="w-fit h-full bg-[#6D22FB] rounded-xl" src={reservation.imageSrc} alt="Hotel room reserved" />
+              <img className="w-full h-full bg-[#6D22FB] rounded-xl" src={reservation.imageSrc} alt="Hotel room reserved" />
             </div>
-            <ul className="detailsList mt-6 text-lg font-medium flex flex-col gap-1">
+            <ul className="detailsList w-full mt-6 text-lg font-medium flex flex-col gap-1">
               <li>Hotel: </li>
               <li className="py-1 rounded-[5px] text-center">{reservation.hotelName}</li>
               <li>Room: </li>
               <li className="py-1 rounded-[5px] text-center">{reservation.roomType}</li>
               <li>Price: </li>
-              <li className="py-1 rounded-[5px] text-center">
-                $
-                {reservation.price}
-                {' '}
-                USD
-              </li>
+              <li className="py-1 rounded-[5px] text-center">{`${reservation.price} $`}</li>
               <li>Reservation Date:</li>
               <li className="py-1 rounded-[5px] text-center">{reservation.date}</li>
-              <button className="my-5 text-2xl bg-red-600 rounded-full p-3 text-white" type="button" onClick={() => handleDelete(reservation.id)}>
+              <button className="my-5 text-xl font-medium bg-red-500 rounded-[10px] p-3 text-white" type="button" onClick={() => handleDelete(reservation.id)}>
                 Cancel Reservation
               </button>
             </ul>
-          </div>
+          </li>
         ))}
-        </>
-      )}
+      </ul>
     </div>
   );
 };

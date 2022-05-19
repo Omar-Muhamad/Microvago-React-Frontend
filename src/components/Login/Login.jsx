@@ -52,7 +52,7 @@ const Login = () => {
             className="w-1/2 rounded-full py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
             type="submit"
           >
-            { isLoading ? (<Spinner classes={'bg-white'}/>) : 'Login' }
+            { isLoading ? (<Spinner classes="bg-white" />) : 'Login' }
           </button>
           { loginStore && (
             <p>{loginStore}</p>

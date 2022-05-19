@@ -37,7 +37,7 @@ const Hotels = () => {
 
   return (
     <div className="h-hero sm:min-h-screen h-full w-full overflow-y-auto text-center flex flex-col text-[#6D22FB]">
-      <div className="titleContainer flex flex-col items-center mt-16 sm:mt-40 justify-end gap-3 text-gray-400">
+      <div className="titleContainer flex flex-col items-center mt-10 sm:mt-40 justify-end gap-3 text-gray-400">
         <h1 className="text-4xl sm:text-6xl font-bold text-gray-700">Hotels List</h1>
         <p className="text-lg">Click to view hotel details</p>
         <p>------------------</p>
@@ -50,9 +50,9 @@ const Hotels = () => {
         >
           <i className="fa-solid fa-angle-left fa-lg text-white" />
         </button>
-        {isLoading && (<Spinner parentClasses='grow flex justify-center' classes='bg-gray-400'/>)}
-        {!isLoading && hotels.length > 0 
-          && (<ul className="hotels grow px-4 sm:px-14 2xl:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-14 2xl:gap-20">
+        {isLoading && (<Spinner parentClasses="grow flex justify-center" classes="bg-gray-400" />)}
+        {!isLoading && hotels.length > 0 && (
+          <ul className="hotels grow px-4 sm:px-14 2xl:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-14 2xl:gap-20">
             {currentHotels && currentHotels.map((hotel) => (
               <li key={hotel.id} className="hotel">
                 <NavLink to={`hotels/${hotel.id}`}>
