@@ -44,7 +44,7 @@ const HeaderContainer = () => {
             Microvago
           </NavLink>
           <button onClick={() => setNavOpen(!navOpen)} type="button">
-            <i class="fa-solid fa-bars"></i>
+            <i className="fa-solid fa-bars"></i>
           </button>
         </div>
         <Transition in={navOpen} timeout={200}>
