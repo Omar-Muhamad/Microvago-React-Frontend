@@ -3,12 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchHotels } from '../../redux/Hotel/hotel';
 import { API_URL } from '../../redux/api/apiHelper';
+import { startLoading, stopLoading } from '../../redux/UI/ui';
+
+import Spinner from '../Spinner/Spinner';
 
 const Hotels = () => {
+  const isLoading = useSelector((state) => state.ui.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchHotels());
+    dispatch(startLoading());
+    dispatch(fetchHotels()).then(() => {
+      dispatch(stopLoading());
+    });
   }, []);
 
   const hotels = useSelector((state) => state.hotels.hotels);
@@ -43,31 +50,37 @@ const Hotels = () => {
         >
           <i className="fa-solid fa-angle-left fa-lg text-white" />
         </button>
-        <ul className="hotels grow px-4 sm:px-14 2xl:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-14 2xl:gap-20">
-          {currentHotels && currentHotels.map((hotel) => (
-            <li key={hotel.id} className="hotel">
-              <NavLink to={`hotels/${hotel.id}`}>
-                <div className="imageContainer w-full h-[220px]">
-                  <img
-                    className="w-full h-full rounded-lg bg-[#6D22FB] rounded-tl-[35%] rounded-br-[35%]"
-                    src={`${API_URL}${hotel.image.url}`}
-                    alt={hotel.name}
-                  />
-                </div>
-                <div className="text-gray-400">
-                  <h2 className="hotelName my-2 mt-8 text-black text-lg font-black text-center">
-                    {hotel.name.toUpperCase()}
-                  </h2>
-                  <div className="text-center mb-3 text-4x font-bold text-gray-400">
-                    ------------------
+        {isLoading && (<Spinner parentClasses='grow flex justify-center' classes='bg-gray-400'/>)}
+        {!isLoading && hotels.length > 0 
+          && (<ul className="hotels grow px-4 sm:px-14 2xl:px-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-14 2xl:gap-20">
+            {currentHotels && currentHotels.map((hotel) => (
+              <li key={hotel.id} className="hotel">
+                <NavLink to={`hotels/${hotel.id}`}>
+                  <div className="imageContainer w-full h-[220px]">
+                    <img
+                      className="w-full h-full rounded-lg bg-[#6D22FB] rounded-tl-[35%] rounded-br-[35%]"
+                      src={`${API_URL}${hotel.image.url}`}
+                      alt={hotel.name}
+                    />
                   </div>
-                  <p>{`Location: ${hotel.location}`}</p>
-                  <p>{`Rating: ${hotel.rating}`}</p>
-                </div>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+                  <div className="text-gray-400">
+                    <h2 className="hotelName my-2 mt-8 text-black text-lg font-black text-center">
+                      {hotel.name.toUpperCase()}
+                    </h2>
+                    <div className="text-center mb-3 text-4x font-bold text-gray-400">
+                      ------------------
+                    </div>
+                    <p>{`Location: ${hotel.location}`}</p>
+                    <p>{`Rating: ${hotel.rating}`}</p>
+                  </div>
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        )}
+        {!isLoading && hotels.length === 0 && (
+          <div className="text-2xl text-gray-400 grow text-center font-bold select-none">No hotels to display</div>
+        )}
         <button
           className="px-4 pr-7 py-3 rounded-l-full h-fit bg-[#6D22FB]"
           type="button"
