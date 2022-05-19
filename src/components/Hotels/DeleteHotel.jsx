@@ -24,7 +24,7 @@ const DeleteHotel = () => {
   };
 
   return (
-    <div className="h-hero sm:min-h-screen h-full w-full overflow-y-auto text-center flex flex-col px-6 sm:px-14 py-10 sm:py-20">
+    <div className="h-hero sm:max-h-screen sm:min-h-screen h-full w-full overflow-y-auto text-center flex flex-col px-6 sm:px-14 py-10 sm:py-20">
       <div className="titleContainer flex flex-col items-center justify-end gap-3 text-gray-400">
         <h1 className="text-4xl sm:text-6xl font-bold text-gray-700">All Hotels</h1>
       </div>
