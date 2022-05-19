@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../../redux/Auth/auth';
+import { startLoading, stopLoading } from '../../redux/UI/ui';
+import Spinner from '../Spinner/Spinner';
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isLoading = useSelector((state) => state.ui.isLoading);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,8 +19,11 @@ const SignUp = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     };
-    dispatch(signUp(UserData));
-    navigate('/login');
+    dispatch(startLoading());
+    dispatch(signUp(UserData)).then(() => {
+      dispatch(stopLoading());
+      navigate('/login');
+    });
   };
 
   return (
@@ -65,7 +71,7 @@ const SignUp = () => {
             type="submit"
             className="w-[70%] lg:w-3/5 rounded-full py-3 bg-white text-[#6D22FB] font-medium hover:bg-transparent border-2 border-transparent hover:border-white hover:text-white"
           >
-            CREATE ACCOUNT
+            { isLoading ? (<Spinner classes="bg-white" />) : 'CREATE ACCOUNT' }
           </button>
           <div className="w-full mt-2 flex items-center justify-center gap-3">
             <p className="text-base">Already have account?</p>

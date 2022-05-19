@@ -36,7 +36,7 @@ const authSlice = createSlice({
   reducers: {
     checkAuth: (state) => {
       const token = localStorage.getItem('token');
-      const isAdmin = localStorage.getItem('isAdmin');
+      const isAdmin = JSON.parse(localStorage.getItem('isAdmin'));
       if (token) {
         state.token = token;
         state.isAuthorized = true;
@@ -46,6 +46,7 @@ const authSlice = createSlice({
     },
     logout: () => {
       localStorage.removeItem('token');
+      localStorage.removeItem('isAdmin');
       return {
         ...initialState,
       };
@@ -57,7 +58,7 @@ const authSlice = createSlice({
         state.error = action.payload.error;
       } else {
         localStorage.setItem('token', action.payload.token);
-        localStorage.setItem('isAdmin', action.payload.admin);
+        localStorage.setItem('isAdmin', JSON.stringify(action.payload.admin));
         state.token = action.payload.token;
         state.admin = action.payload.admin;
         state.isAuthorized = true;
@@ -67,7 +68,6 @@ const authSlice = createSlice({
     builder.addCase(signUp.fulfilled, (state) => ({
       ...state,
       isAuthorized: false,
-      error: {},
     }));
   },
 });

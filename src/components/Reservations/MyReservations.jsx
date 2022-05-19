@@ -4,14 +4,14 @@ import { API_URL } from '../../redux/api/apiHelper';
 import { fetchReservation, deleteReservation } from '../../redux/Reservation/reservation';
 import { startLoading, stopLoading } from '../../redux/UI/ui';
 
-// import Spinner from '../Spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 
 const MyReservations = () => {
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservations.reservation);
   const hotels = useSelector((state) => state.hotels.hotels);
   const rooms = useSelector((state) => state.rooms.rooms);
-  // const isLoading = useSelector((state) => state.ui.isLoading);
+  const isLoading = useSelector((state) => state.ui.isLoading);
   const [reservationsToDisplay, setReservationsToDisplay] = useState([]);
 
   useEffect(() => {
@@ -48,7 +48,10 @@ const MyReservations = () => {
   }, []);
 
   const handleDelete = (id) => {
-    dispatch(deleteReservation(id));
+    dispatch(startLoading());
+    dispatch(deleteReservation(id)).then(() => {
+      dispatch(stopLoading());
+    });
   };
 
   return (
@@ -56,6 +59,11 @@ const MyReservations = () => {
       <div className="titleContainer flex flex-col items-center justify-end gap-3 text-gray-400">
         <h1 className="text-4xl sm:text-6xl font-bold text-gray-700">My Reservations</h1>
       </div>
+      { isLoading && <Spinner classes="bg-black" /> }
+      {!isLoading && reservationsToDisplay.length === 0 && (
+        <div className="text-2xl text-gray-400 grow text-center font-bold select-none flex items-center justify-center">No reservations yet.</div>
+      )}
+      {!isLoading && hotels.length > 0 && (
       <ul className="w-full grid grid-cols-1 sm:grid-cols-2 sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-14">
         {reservationsToDisplay?.map((reservation) => (
           <li className="w-full border-2 rounded-[15px] sm:rounded-[30px] p-[20px] sm:p-[30px] shadow-xl" key={reservation.id}>
@@ -72,12 +80,12 @@ const MyReservations = () => {
               <li>Reservation Date:</li>
               <li className="py-1 rounded-[5px] text-center">{reservation.date}</li>
               <button className="my-5 text-xl font-medium bg-red-500 rounded-[10px] p-3 text-white" type="button" onClick={() => handleDelete(reservation.id)}>
-                Cancel Reservation
+                Cancel reservation
               </button>
             </ul>
           </li>
         ))}
-      </ul>
+      </ul>)}
     </div>
   );
 };

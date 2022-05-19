@@ -168,6 +168,8 @@ const AddHotel = () => {
               />
               <input
                 required
+                min="1"
+                max="5"
                 onChange={(e) => dispatch({ type: 'rating', payload: e.target.value })}
                 className="w-full p-3 mt-6 bg-transparent border-2 rounded-full font-medium text-center"
                 type="number"

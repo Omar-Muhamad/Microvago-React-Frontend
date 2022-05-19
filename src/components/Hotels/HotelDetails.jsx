@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHotelsDetails } from '../../redux/Hotel/hotel';
 import { API_URL } from '../../redux/api/apiHelper';
@@ -40,6 +40,9 @@ const HotelDetails = () => {
             <li className="py-1 px-4 rounded-[5px] text-left">
               {hotel.description}
             </li>
+            <NavLink className="my-5 text-xl font-medium bg-green-500 rounded-[10px] p-3 text-white text-center" to="/reservations/add">
+              <button type="button">Reserve</button>
+            </NavLink>
           </ul>
         </div>
       </div>
@@ -48,13 +51,10 @@ const HotelDetails = () => {
           Hotel Rooms
         </h2>
         <div className="roomContainer w-full grid grid-cols-1 sm:grid-cols-2 grow justify-center gap-10 sm:gap-12">
-          {hotel?.hotel_rooms?.map((room) => (
-            <HotelRoom key={room.id} hotelRoom={room} />
+          { hotel?.hotel_rooms?.map((room) => (
+            <HotelRoom key={room.id} hotelRoom={room} hotelId={hotel.id} />
           ))}
         </div>
-        { hotel?.hotel_rooms?.map((room) => (
-          <HotelRoom key={room.id} hotelRoom={room} hotelId={hotel.id} />
-        ))}
       </div>
     </div>
   );
