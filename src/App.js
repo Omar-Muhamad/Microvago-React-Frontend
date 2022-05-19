@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuth } from './redux/Auth/auth';
 import { fetchRooms } from './redux/Room/room';
-import './App.css';
 
 import Splash from './components/Splash/Splash';
 import Login from './components/Login/Login';
@@ -14,7 +13,8 @@ import Hotels from './components/Hotels/Hotels';
 import HotelDetails from './components/Hotels/HotelDetails';
 import AddReservation from './components/Reservations/AddReservation';
 import MyReservations from './components/Reservations/MyReservations';
-import RemoveHotel from './components/Hotels/RemoveHotel';
+import DeleteHotel from './components/Hotels/DeleteHotel';
+import './App.css';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,16 +30,16 @@ const App = () => {
   return (
     <>
       {isAuthorized && (
-        <div className="grid grid-cols-5">
+        <div className="grid sm:grid-cols-5 w-full overflow-none">
           {isAuthorized && <Header />}
-          <div className="col-span-4">
+          <div className="sm:col-span-4 col-span-full w-full h-hero sm:h-full sm:w-auto mt-16 sm:mt-0">
             <Routes>
               <Route path="/" element={<Hotels />} />
               <Route path="/hotels/add" element={<AddHotel />} />
               <Route path="/hotels/:id" element={<HotelDetails />} />
               <Route path="/reservations/add" element={<AddReservation />} />
               <Route path="/myreservations" element={<MyReservations />} />
-              <Route path="/hotels/remove" element={<RemoveHotel />} />
+              <Route path="/hotels/delete" element={<DeleteHotel />} />
             </Routes>
           </div>
         </div>

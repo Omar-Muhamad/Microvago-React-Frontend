@@ -9,7 +9,7 @@ const initialState = {
 export const fetchRooms = createAsyncThunk(
   'rooms',
   async () => {
-    console.log('asd')
+    console.log('asd');
     const response = await apiHelper.getRooms();
     return response.data;
   },

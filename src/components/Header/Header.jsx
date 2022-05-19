@@ -25,19 +25,19 @@ const Header = () => {
       <nav className="nav">
         <ul className="row-span-3 flex flex-col gap-4 text-left text-xl font-medium">
           <li className="ml-3 pl-3 py-2 navLink hover:text-black text-white bg-[#6D22FB]">
-            <NavLink to="/reservations/add">Add reservation</NavLink>
+            <NavLink className="close-navbar w-full" to="/reservations/add">Add reservation</NavLink>
           </li>
           <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-            <NavLink to="/myreservations">My reservations</NavLink>
+            <NavLink className="close-navbar w-full" to="/myreservations">My reservations</NavLink>
           </li>
           {
             isAdmin && (
               <>
                 <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-                  <NavLink to="/hotels/add">Add Hotel</NavLink>
+                  <NavLink className="close-navbar" to="/hotels/add">Add Hotel</NavLink>
                 </li>
                 <li className="ml-3 pl-3 py-2 navLink hover:text-black">
-                  <NavLink to="/hotels/remove">Delete Hotel</NavLink>
+                  <NavLink className="close-navbar" to="/hotels/Delete">Delete Hotel</NavLink>
                 </li>
               </>
             )
