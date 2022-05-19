@@ -4,7 +4,7 @@
 
 > This is a web app built to reserve hotel rooms all around the globe.
 
-![screenshot](../final-capstone-react-frontend/src/img/screenshot.png)
+![screenshot](src/img/screenshot.png)
 
 ![screenshot2](src/img/screenshot2.png)
 
