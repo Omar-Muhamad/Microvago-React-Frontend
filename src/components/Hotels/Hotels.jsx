@@ -24,7 +24,7 @@ const Hotels = () => {
   const currentHotels = hotels.slice(3 * count, 3 * count + 3);
 
   const handleNext = () => {
-    if (hotels.length <= 3) {
+    if (currentHotels.length < 3) {
       setCount(0);
     } else {
       setCount(count + 1);
