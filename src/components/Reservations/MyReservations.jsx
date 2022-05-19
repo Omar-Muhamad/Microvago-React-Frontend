@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../redux/api/apiHelper';
 import { fetchReservation, deleteReservation } from '../../redux/Reservation/reservation';
+import { startLoading, stopLoading } from '../../redux/UI/ui';
+
+// import Spinner from '../Spinner/Spinner';
 
 const MyReservations = () => {
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservations.reservation);
   const hotels = useSelector((state) => state.hotels.hotels);
   const rooms = useSelector((state) => state.rooms.rooms);
+  // const isLoading = useSelector((state) => state.ui.isLoading);
   const [reservationsToDisplay, setReservationsToDisplay] = useState([]);
 
   useEffect(() => {
@@ -21,7 +25,7 @@ const MyReservations = () => {
         const room = rooms.find(
           (room) => room.id === reserv.hotel_room.room_id,
         );
-        const image = hotel.hotel_rooms.find(
+        const image = hotel?.hotel_rooms.find(
           (hr) => hr.id === reserv.hotel_room.id,
         ).featured_room_image;
 
@@ -37,7 +41,10 @@ const MyReservations = () => {
   }, [reservations, hotels, rooms]);
 
   useEffect(() => {
-    dispatch(fetchReservation());
+    dispatch(startLoading());
+    dispatch(fetchReservation()).then(() => {
+      dispatch(stopLoading());
+    });
   }, []);
 
   const handleDelete = (id) => {
