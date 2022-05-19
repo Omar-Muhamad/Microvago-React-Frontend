@@ -2,14 +2,20 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteHotel, fetchHotels } from '../../redux/Hotel/hotel';
 import { API_URL } from '../../redux/api/apiHelper';
+import { startLoading, stopLoading } from '../../redux/UI/ui';
+import Spinner from '../Spinner/Spinner';
 
 const DeleteHotel = () => {
   const dispatch = useDispatch();
 
   const hotels = useSelector((state) => state.hotels.hotels);
+  const isLoading = useSelector((state) => state.ui.isLoading);
 
   useEffect(() => {
-    dispatch(fetchHotels());
+    dispatch(startLoading());
+    dispatch(fetchHotels()).then(() => {
+      dispatch(stopLoading());
+    });
   }, []);
 
   const handleDelete = async (id) => {
@@ -22,6 +28,11 @@ const DeleteHotel = () => {
       <div className="titleContainer flex flex-col items-center justify-end gap-3 text-gray-400">
         <h1 className="text-4xl sm:text-6xl font-bold text-gray-700">All Hotels</h1>
       </div>
+      { isLoading && <Spinner classes="bg-black" /> }
+      {!isLoading && hotels.length === 0 && (
+        <div className="text-2xl text-gray-400 grow text-center font-bold select-none flex items-center justify-center">Nothing to delete.</div>
+      )}
+      {!isLoading && hotels.length > 0 && (
       <ul className="w-full grid grid-cols-1 sm:grid-cols-2 sm:flex-row gap-8 sm:gap-12 mt-8 sm:mt-14">
         {hotels && hotels.map((hotel) => (
           <li
@@ -43,6 +54,7 @@ const DeleteHotel = () => {
           </li>
         ))}
       </ul>
+      )}
     </div>
   );
 };
