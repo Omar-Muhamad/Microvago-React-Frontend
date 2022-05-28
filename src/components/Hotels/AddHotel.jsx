@@ -141,7 +141,7 @@ const AddHotel = () => {
 
   return (
     <div className="formContainer splashBG bg-[#6D22FB] h-hero sm:min-h-screen w-full flex items-center justify-center text-white text-center">
-      <div className="px-6 py-14 lg:px-20 lg:py-40 h-full w-full w-full overflow-y-auto">
+      <div className="px-6 py-14 sm:px-20 sm:py-20 h-full w-full w-full overflow-y-auto">
         <h1 className="font-['Comfortaa'] text-white text-3xl font-bold">
           Add Hotel
         </h1>
