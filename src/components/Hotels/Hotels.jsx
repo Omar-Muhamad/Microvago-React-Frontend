@@ -40,8 +40,8 @@ const Hotels = () => {
   };
 
   return (
-    <div className="h-hero sm:min-h-screen h-full w-full overflow-y-auto text-center flex flex-col text-[#6D22FB]">
-      <div className="titleContainer flex flex-col items-center mt-10 sm:mt-40 justify-end gap-3 text-gray-400">
+    <div className="h-hero sm:max-h-screen sm:min-h-screen h-full w-full overflow-y-auto text-center flex flex-col text-[#6D22FB]">
+      <div className="titleContainer flex flex-col items-center mt-10 sm:mt-20 justify-end gap-3 text-gray-400">
         <h1 className="text-4xl sm:text-6xl font-bold text-gray-700">Hotels List</h1>
         <p className="text-lg">Click to view hotel details</p>
         <p>------------------</p>

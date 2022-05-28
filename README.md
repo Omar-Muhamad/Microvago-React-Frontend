@@ -4,13 +4,13 @@
 
 > This is a web app built to reserve hotel rooms all around the globe.
 
-![screenshot](src/img/screenshot.png)
+## Live Demo :iphone:
+To see this project's live demo, please click [here](https://microvago.netlify.app/).
 
-![screenshot2](src/img/screenshot2.png)
+## Mockup
 
-![screenshot3](src/img/screenshot3.png)
+![screenshot](src/img/microvago-mockup.png)
 
-![screenshot4](src/img/screenshot4.png)
 
 ## Kanban Board :clipboard:
 To view the Kanban Board we built for this project please click [here](https://github.com/Omar-Muhamad/final-capstone-react-frontend/projects/2).
@@ -41,9 +41,6 @@ git clone git@github.com:Omar-Muhamad/final-capstone-react-frontend.git
 ~~~
 ### Install
 Run `npm i` to install all the necessary dependencies.
-
-## Live Demo :iphone:
-To see this project's live demo, please click [here](https://microvago.netlify.app/).
 
 ## Authors :busts_in_silhouette:
 
