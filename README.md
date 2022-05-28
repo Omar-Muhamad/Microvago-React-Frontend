@@ -7,6 +7,8 @@
 ## Live Demo :iphone:
 To see this project's live demo, please click [here](https://microvago.netlify.app/).
 
+⚠️Note: All images you add while testing the App will be deleted after 30 mins because we used free service for the backend.⚠️
+
 ## Mockup
 
 ![screenshot](src/img/microvago-mockup.png)
