@@ -2,7 +2,7 @@
 
 # Microvago
 
-> This is a web app built to reserve hotel rooms all around the globe.
+> This is a web app built to reserve hotel rooms all around the globe. This app is built with a React front-end and Ruby-on-Rails API back-end.
 
 ## Live Demo :iphone:
 To see this project's live demo, please click [here](https://microvago.netlify.app/).
