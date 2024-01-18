@@ -25,7 +25,8 @@ There were 5 contributors to this project, you can see their contact information
 
 - JavaScript
 - React
-- Redux Toolkit, Axios
+- Redux Toolkit
+- Axios
 
 ## Getting Started
 
